@@ -1,75 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PX Program Dashboard — FCTG</title>
 <style>
-:root{--or:#D67833;--sa:#87AD99;--pu:#755470;--ru:#C94024;--go:#EDB261;--bg:#fff;--bg2:#F7F7F7;--bg3:#F0F0F0;--tx:#1A1A1A;--tx2:#555;--tx3:#888;--bd:#DDD;--bd2:#EEE;--gbg:#D4EDDA;--gfg:#155724;--abg:#FFF3CD;--afg:#856404;--rbg:#F8D7DA;--rfg:#721C24;--cbg:#F5C6CB;--cfg:#491217;--bbg:#E6F1FB;--bfg:#185FA5;--hbg:#E8E0ED;--hfg:#4A3057}
-@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--bg2:#242424;--bg3:#2e2e2e;--tx:#f0f0f0;--tx2:#aaa;--tx3:#666;--bd:#3a3a3a;--bd2:#333;--gbg:#1a3a24;--gfg:#6fcf8e;--abg:#3a3010;--afg:#f0c040;--rbg:#3a1a1a;--rfg:#f08080;--cbg:#3a1010;--cfg:#f0a0a0;--bbg:#0a2040;--bfg:#60a0e0;--hbg:#2a1a3a;--hfg:#c0a0e0}}
+:root{--or:#D67833;--sa:#87AD99;--pu:#755470;--ru:#C94024;--go:#EDB261;--bg:#fff;--bg2:#F7F7F7;--bg3:#EDEDED;--tx:#1A1A1A;--tx2:#555;--tx3:#888;--bd:#DDD;--bd2:#EEE;--gbg:#D4EDDA;--gfg:#155724;--abg:#FFF3CD;--afg:#856404;--rbg:#F8D7DA;--rfg:#721C24;--cbg:#F5C6CB;--cfg:#491217;--bbg:#E6F1FB;--bfg:#185FA5;--hbg:#E8E0ED;--hfg:#4A3057}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--bg2:#242424;--bg3:#2e2e2e;--tx:#f0f0f0;--tx2:#aaa;--tx3:#666;--bd:#3a3a3a;--bd2:#333;--gbg:#1a3a24;--gfg:#6fcf8e;--abg:#3a3010;--afg:#f0c040;--rbg:#3a1a1a;--rfg:#f08080;--cbg:#3a1010;--cfg:#f0a0a0;--bbg:#0a2040;--bfg:#60a0e0}}
 *{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;font-size:14px;color:var(--tx);background:var(--bg)}
-.hdr{background:var(--bg);border-bottom:3px solid var(--or);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.hdr h1{font-size:19px;font-weight:600;color:var(--or)}.hdr p{font-size:12px;color:var(--tx2);margin-top:2px}.hdr-r{font-size:12px;color:var(--tx3);text-align:right}
-.meta{background:var(--abg);border-left:4px solid var(--go);padding:8px 24px;font-size:12px;color:var(--afg)}
-.wrap{max-width:1440px;margin:0 auto;padding:16px 24px 60px}
-.tabs{display:flex;border-bottom:1px solid var(--bd2);margin-bottom:16px;overflow-x:auto;gap:0}
-.tab{padding:8px 12px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--tx2);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;display:flex;align-items:center;gap:4px}
-.tab svg{width:13px;height:13px;flex-shrink:0}.tab:hover{color:var(--tx)}.tab.active{color:var(--or);border-bottom-color:var(--or)}
+.hdr{background:var(--bg);border-bottom:3px solid var(--or);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.hdr h1{font-size:18px;font-weight:600;color:var(--or)}.hdr p{font-size:11px;color:var(--tx2);margin-top:1px}.hdr-r{font-size:12px;color:var(--tx3)}
+.meta{background:var(--abg);border-left:4px solid var(--go);padding:6px 24px;font-size:12px;color:var(--afg)}
+.wrap{max-width:1500px;margin:0 auto;padding:14px 24px 60px}
+.tabs{display:flex;border-bottom:1px solid var(--bd2);margin-bottom:14px;overflow-x:auto;gap:0}
+.tab{padding:8px 11px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--tx2);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.tab svg{width:13px;height:13px}.tab:hover{color:var(--tx)}.tab.active{color:var(--or);border-bottom-color:var(--or)}
 .panel{display:none}.panel.active{display:block}
-.filter-area{margin-bottom:10px}
-.filter-row{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:5px}
-.filter-row label{font-size:11px;font-weight:600;color:var(--tx3);min-width:60px;text-transform:uppercase;letter-spacing:.04em}
-.chip-wrap{display:flex;flex-wrap:wrap;gap:3px}
-.fchip{font-size:11px;padding:2px 8px;border-radius:20px;cursor:pointer;border:1px solid var(--bd);background:var(--bg2);color:var(--tx2);user-select:none;transition:all .12s}
-.fchip:hover{border-color:var(--or);color:var(--or)}.fchip.on{background:var(--or);border-color:var(--or);color:#fff;font-weight:500}
+/* FILTERS */
+.fa{margin-bottom:10px}.fr{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-bottom:4px}
+.fr label{font-size:11px;font-weight:600;color:var(--tx3);min-width:58px;text-transform:uppercase;letter-spacing:.04em}
+.cw{display:flex;flex-wrap:wrap;gap:3px}
+.fc{font-size:11px;padding:2px 8px;border-radius:20px;cursor:pointer;border:1px solid var(--bd);background:var(--bg2);color:var(--tx2);user-select:none;transition:all .1s}
+.fc:hover{border-color:var(--or);color:var(--or)}.fc.on{background:var(--or);border-color:var(--or);color:#fff;font-weight:500}
 .sbar{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
-.sbar input{font-size:12px;padding:5px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--tx);height:30px;width:190px}
+.sbar input{font-size:12px;padding:5px 10px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--tx);height:30px;width:185px}
 .sbar input:focus{outline:2px solid var(--or);outline-offset:1px}
 .sbar label{font-size:12px;color:var(--tx2);display:flex;align-items:center;gap:4px}
-.clr{font-size:11px;color:var(--tx3);cursor:pointer;padding:3px 8px;border:1px solid var(--bd);border-radius:6px;background:var(--bg)}
+.clr{font-size:11px;padding:3px 8px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--tx3);cursor:pointer}
 .clr:hover{color:var(--ru);border-color:var(--ru)}
-.tbl-wrap{border:1px solid var(--bd);border-radius:10px;overflow:hidden;overflow-x:auto}
+/* TABLES */
+.tw{border:1px solid var(--bd);border-radius:10px;overflow:hidden;overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:600px}
-th{background:var(--bg2);font-size:11px;font-weight:600;color:var(--tx2);padding:7px 10px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
-td{padding:8px 10px;border-bottom:1px solid var(--bd2);vertical-align:top;font-size:12px}
-tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}tbody tr.editing td{background:#FFFBF0!important}
-.age-g{background:var(--gbg);color:var(--gfg);font-size:10px;font-weight:600;padding:2px 5px;border-radius:3px;white-space:nowrap}
-.age-a{background:var(--abg);color:var(--afg);font-size:10px;font-weight:600;padding:2px 5px;border-radius:3px;white-space:nowrap}
-.age-r{background:var(--rbg);color:var(--rfg);font-size:10px;font-weight:600;padding:2px 5px;border-radius:3px;white-space:nowrap}
+th{background:var(--bg2);font-size:11px;font-weight:600;color:var(--tx2);padding:6px 10px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid var(--bd2);vertical-align:top;font-size:12px}
+tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}
+tbody tr.ed td{background:#FFFBF0!important}
+/* BADGES */
 .badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;white-space:nowrap}
-.b-ns{background:var(--bg3);color:var(--tx2)}.b-ip{background:var(--abg);color:var(--afg)}.b-done,.b-res,.b-low{background:var(--gbg);color:var(--gfg)}
-.b-crit{background:var(--cbg);color:var(--cfg)}.b-high,.b-open{background:var(--rbg);color:var(--rfg)}.b-med,.b-prog{background:var(--abg);color:var(--afg)}
-.b-mit,.b-dec,.b-bfg{background:var(--bbg);color:var(--bfg)}.b-pend{background:var(--cbg);color:var(--cfg)}
+.b-ns{background:var(--bg3);color:var(--tx2)}.b-ip{background:var(--abg);color:var(--afg)}
+.b-res,.b-done,.b-low{background:var(--gbg);color:var(--gfg)}
+.b-crit{background:var(--cbg);color:var(--cfg)}.b-high,.b-open{background:var(--rbg);color:var(--rfg)}
+.b-med,.b-prog{background:var(--abg);color:var(--afg)}.b-mit,.b-dec{background:var(--bbg);color:var(--bfg)}
+.b-pend{background:var(--cbg);color:var(--cfg)}
 .chip{display:inline-block;font-size:11px;background:var(--bg2);border:1px solid var(--bd);border-radius:20px;padding:1px 7px;color:var(--tx2)}
 .det{font-size:11px;color:var(--tx2);margin-top:3px}
-.edbtn{font-size:11px;padding:2px 7px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx2);cursor:pointer}
-.edbtn:hover{border-color:var(--or);color:var(--or)}
-.svbtn{font-size:11px;padding:2px 7px;border:none;border-radius:4px;background:var(--or);color:#fff;cursor:pointer;margin-right:3px}
-.cxbtn{font-size:11px;padding:2px 7px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx2);cursor:pointer}
-.einput{font-size:12px;padding:3px 7px;border:1px solid var(--or);border-radius:4px;background:var(--bg);color:var(--tx);width:100%;margin-bottom:3px}
-.eselect{font-size:12px;padding:3px 6px;border:1px solid var(--or);border-radius:4px;background:var(--bg);color:var(--tx);width:100%;margin-bottom:3px}
-.mc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.age-g{background:var(--gbg);color:var(--gfg);font-size:10px;font-weight:600;padding:2px 5px;border-radius:3px}
+.age-a{background:var(--abg);color:var(--afg);font-size:10px;font-weight:600;padding:2px 5px;border-radius:3px}
+.age-r{background:var(--rbg);color:var(--rfg);font-size:10px;font-weight:600;padding:2px 5px;border-radius:3px}
+/* TREND */
+.tr-up{color:#155724;font-weight:700;font-size:14px} .tr-dn{color:#721C24;font-weight:700;font-size:14px} .tr-fl{color:#888;font-size:14px}
+/* EDIT */
+.edb{font-size:11px;padding:2px 7px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx2);cursor:pointer}
+.edb:hover{border-color:var(--or);color:var(--or)}
+.svb{font-size:11px;padding:2px 7px;border:none;border-radius:4px;background:var(--or);color:#fff;cursor:pointer;margin-right:3px}
+.cxb{font-size:11px;padding:2px 7px;border:1px solid var(--bd);border-radius:4px;background:var(--bg);color:var(--tx2);cursor:pointer}
+.ei{font-size:12px;padding:3px 7px;border:1px solid var(--or);border-radius:4px;background:var(--bg);color:var(--tx);width:100%;margin-bottom:3px}
+.es{font-size:12px;padding:3px 6px;border:1px solid var(--or);border-radius:4px;background:var(--bg);color:var(--tx);width:100%;margin-bottom:3px}
+/* METRIC CARDS */
+.mc4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .mc{background:var(--bg2);border-radius:8px;padding:10px 14px;text-align:center}.mc .n{font-size:22px;font-weight:500;margin-bottom:1px}.mc .l{font-size:11px;color:var(--tx2)}
-.sc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.sc4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
 .sc{background:var(--bg2);border-radius:10px;padding:16px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .15s}
-.sc:hover,.sc.on{border-color:var(--or);background:var(--bg)}.sc .n{font-size:32px;font-weight:600;margin-bottom:4px}.sc .l{font-size:12px;color:var(--tx2)}
-.sum-sec{margin-bottom:22px}.sum-sec h3{font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
-.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:12px;cursor:pointer}
-.bar-row:hover .bar-label{color:var(--or)}
-.bar-label{min-width:140px;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--tx)}
-.bar-track{flex:1;background:var(--bd2);border-radius:3px;height:12px;overflow:hidden}
-.bar-fill{height:100%;border-radius:3px;transition:width .4s}.bar-count{min-width:24px;text-align:right;color:var(--tx2);font-weight:500}
-.init-card{border:2px solid transparent;border-radius:8px;padding:10px 12px;cursor:pointer;background:var(--bg)}
-.init-card:hover{border-color:var(--or)!important}
+.sc:hover,.sc.on{border-color:var(--or);background:var(--bg)}.sc .n{font-size:30px;font-weight:600;margin-bottom:4px}.sc .l{font-size:12px;color:var(--tx2)}
+/* SUMMARY CHARTS */
+.sum2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ss h3{font-size:12px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.br{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:12px;cursor:pointer}.br:hover .bl{color:var(--or)}
+.bl{min-width:130px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bt{flex:1;background:var(--bd2);border-radius:3px;height:12px;overflow:hidden}
+.bf{height:100%;border-radius:3px;transition:width .4s}.bn{min-width:24px;text-align:right;color:var(--tx2);font-weight:500}
+.ic{border:2px solid transparent;border-radius:8px;padding:10px 12px;cursor:pointer;background:var(--bg)}
+.ic:hover{border-color:var(--or)!important}
 .cthr{font-size:11px;color:var(--tx3);margin-top:6px;font-style:italic}
-.wcard{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:10px 14px;margin-bottom:7px}
-.wcard .wh{font-weight:500;font-size:13px;margin-bottom:3px}.wcard .wm{font-size:12px;color:var(--tx2)}.wcard .wt{font-size:11px;margin-top:5px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
-.alert-card{border-left:4px solid var(--ru);background:var(--rbg)}.alert-card .wh{color:var(--cfg)}.alert-card .wm{color:var(--rfg)}
+/* WEEK CARDS */
+.wc{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:10px 14px;margin-bottom:7px}
+.wc .wh{font-weight:500;font-size:13px;margin-bottom:3px}.wc .wm{font-size:12px;color:var(--tx2)}.wc .wt{font-size:11px;margin-top:5px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.ac{border-left:4px solid var(--ru);background:var(--rbg)}.ac .wh{color:var(--cfg)}.ac .wm{color:var(--rfg)}
 .ssub{font-size:11px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin:14px 0 7px}
+/* OWNER WORKLOAD */
+.ow-card{background:var(--bg2);border-radius:8px;padding:12px 14px;cursor:pointer;border:2px solid transparent;transition:all .15s}
+.ow-card:hover{border-color:var(--or)}.ow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:14px}
+.ow-bar-wrap{margin-top:6px}
+.ow-seg{display:inline-block;height:8px;border-radius:0}
+.ow-seg:first-child{border-radius:4px 0 0 4px}.ow-seg:last-child{border-radius:0 4px 4px 0}.ow-seg:only-child{border-radius:4px}
+/* TIMELINE */
+.tl-group{margin-bottom:16px}
+.tl-group h4{font-size:12px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--bd2)}
+.tl-item{display:flex;gap:10px;padding:8px 0;border-bottom:0.5px solid var(--bd2);align-items:flex-start}
+.tl-item:last-child{border-bottom:none}
+.tl-date{min-width:70px;font-size:12px;font-weight:500;color:var(--tx);white-space:nowrap}
+.tl-dot{width:8px;height:8px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.tl-body{flex:1}
+.tl-desc{font-size:13px;font-weight:500;margin-bottom:2px}
+.tl-meta{font-size:11px;color:var(--tx2)}
+/* STANDUP PREP */
+.sp-section{background:var(--bg2);border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.sp-section h3{font-size:13px;font-weight:600;color:var(--or);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sp-row{padding:6px 0;border-bottom:0.5px solid var(--bd2);font-size:12px;display:flex;gap:8px;align-items:flex-start}
+.sp-row:last-child{border-bottom:none}
+.sp-label{min-width:10px;color:var(--tx3);font-size:14px}
+/* DEPENDENCY */
+.dep-chain{font-size:11px;color:var(--tx2);margin-top:4px}
+.dep-arrow{color:var(--tx3);margin:0 3px}
+/* RISK-ACTION LINK */
+.ra-link{font-size:11px;background:var(--bbg);color:var(--bfg);border-radius:3px;padding:1px 6px;cursor:pointer;text-decoration:underline;text-decoration-style:dotted}
+/* NOTES LOG */
+.note-item{padding:5px 0;border-bottom:0.5px solid var(--bd2);font-size:12px}
+.note-item:last-child{border-bottom:none}
+.note-date{font-size:11px;color:var(--tx3);margin-bottom:2px}
+/* GANTT */
 .grow{display:flex;align-items:center;min-height:34px;border-bottom:1px solid var(--bd2)}
 .grow:hover{background:var(--bg2)}.glabel{min-width:185px;max-width:185px;font-size:12px;padding:4px 10px;flex-shrink:0}
 .gtrack{flex:1;position:relative;height:34px;min-width:400px}.gbar{position:absolute;height:16px;top:9px;border-radius:3px}
 .gstatus{min-width:78px;font-size:11px;padding:0 8px;flex-shrink:0}
+/* MANUAL */
 .mform{background:var(--bg2);border-radius:8px;padding:14px;margin-bottom:14px}
 .mform .r2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .mform .r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
@@ -77,8 +120,9 @@ tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}tbod
 .mform input,.mform select{width:100%;font-size:12px;padding:5px 9px;border:1px solid var(--bd);border-radius:6px;background:var(--bg);color:var(--tx)}
 .svbig{background:var(--or);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer}
 .mitem{background:var(--bg);border:1px solid var(--bd);border-radius:7px;padding:9px 11px;margin-bottom:6px;font-size:12px}
-.empty{padding:18px;text-align:center;color:var(--tx2)}
+.empty{padding:18px;text-align:center;color:var(--tx2);font-size:13px}
 .ft{font-size:11px;color:var(--tx3);text-align:right;margin-top:16px;border-top:1px solid var(--bd2);padding-top:10px}
+@media(max-width:768px){.mc4,.sc4{grid-template-columns:repeat(2,1fr)}.sum2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -87,9 +131,12 @@ tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}tbod
 <div class="wrap">
 <div class="tabs">
   <button class="tab active" onclick="show('summary',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg>Summary</button>
+  <button class="tab" onclick="show('standup',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Standup prep</button>
   <button class="tab" onclick="show('alerts',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Alerts</button>
   <button class="tab" onclick="show('week',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>This week</button>
   <button class="tab" onclick="show('nextweek',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 11 12 14 22 4"/></svg>Next week</button>
+  <button class="tab" onclick="show('timeline',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 7 12 2 7 7"/><polyline points="17 17 12 22 7 17"/></svg>Timeline</button>
+  <button class="tab" onclick="show('owners',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>Owners</button>
   <button class="tab" onclick="show('actions',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Actions</button>
   <button class="tab" onclick="show('risks',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Risks</button>
   <button class="tab" onclick="show('decisions',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Decisions</button>
@@ -98,25 +145,36 @@ tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}tbod
   <button class="tab" onclick="show('manual',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Add update</button>
 </div>
 
+<!-- SUMMARY -->
 <div id="summary" class="panel active">
-  <div class="sc-grid" id="sc"></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-    <div class="sum-sec"><h3>Actions by status</h3><div id="sb-act"></div><p class="cthr">Click to filter Actions tab</p></div>
-    <div class="sum-sec"><h3>Risks by RAG (open only)</h3><div id="sb-risk"></div><p class="cthr">Click to filter Risks tab</p></div>
-    <div class="sum-sec"><h3>Open actions by initiative</h3><div id="sb-ainit"></div></div>
-    <div class="sum-sec"><h3>Open risks by initiative</h3><div id="sb-rinit"></div></div>
+  <div class="sc4" id="sc"></div>
+  <div class="sum2">
+    <div class="ss"><h3>Actions by status</h3><div id="sb-a"></div><p class="cthr">Click to filter Actions tab</p></div>
+    <div class="ss"><h3>Risks by RAG (open only)</h3><div id="sb-r"></div><p class="cthr">Click to filter Risks tab</p></div>
+    <div class="ss"><h3>Open actions by initiative</h3><div id="sb-ai"></div></div>
+    <div class="ss"><h3>Open risks by initiative</h3><div id="sb-ri"></div></div>
   </div>
-  <div class="sum-sec" style="margin-top:4px"><h3>Initiative health — click any card to open Initiatives tab</h3>
+  <div class="ss" style="margin-top:4px"><h3>Initiative health</h3>
     <div id="sb-inits" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:8px"></div>
+    <p class="cthr">Click any card to open Initiatives tab</p>
   </div>
 </div>
 
-<div id="alerts" class="panel">
-  <div class="mc-grid" id="al-mc"></div>
-  <div class="ssub">Overdue actions</div><div id="al-acts"></div>
-  <div class="ssub" style="margin-top:16px">Critical and high risks open</div><div id="al-risks"></div>
+<!-- STANDUP PREP -->
+<div id="standup" class="panel">
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:14px">Auto-assembled from live data every time you open this tab. Use this to prepare for Monday's briefing or Tuesday's stand-up.</p>
+  <div id="sp-content"></div>
 </div>
 
+<!-- ALERTS -->
+<div id="alerts" class="panel">
+  <div class="mc4" id="al-mc"></div>
+  <div class="ssub">Overdue actions</div><div id="al-acts"></div>
+  <div class="ssub" style="margin-top:16px">Critical and high risks — open</div><div id="al-risks"></div>
+  <div class="ssub" style="margin-top:16px">Pending decisions over 14 days old</div><div id="al-decs"></div>
+</div>
+
+<!-- THIS WEEK -->
 <div id="week" class="panel">
   <div style="font-size:13px;font-weight:500;padding:7px 12px;border-radius:6px;margin-bottom:12px;border-left:4px solid var(--or);background:#FFF8F0;color:#8B4A00" id="tw-b"></div>
   <div class="ssub">Actions due this week</div><div id="tw-a"></div>
@@ -124,6 +182,7 @@ tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}tbod
   <div class="ssub" style="margin-top:16px">Milestones</div><div id="tw-m"></div>
 </div>
 
+<!-- NEXT WEEK -->
 <div id="nextweek" class="panel">
   <div style="font-size:13px;font-weight:500;padding:7px 12px;border-radius:6px;margin-bottom:12px;border-left:4px solid #185FA5;background:#EEF5FF;color:#0A3060" id="nw-b"></div>
   <div class="ssub">Actions due next week</div><div id="nw-a"></div>
@@ -131,42 +190,63 @@ tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}tbod
   <div class="ssub" style="margin-top:16px">Milestones</div><div id="nw-m"></div>
 </div>
 
+<!-- TIMELINE -->
+<div id="timeline" class="panel">
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:14px">All milestones across the full portfolio horizon. Grouped by week.</p>
+  <div id="tl-content"></div>
+</div>
+
+<!-- OWNERS -->
+<div id="owners" class="panel">
+  <p style="font-size:13px;color:var(--tx2);margin-bottom:12px">Open actions per owner. Click a card to filter the Actions tab to that owner.</p>
+  <div class="ow-grid" id="ow-grid"></div>
+  <div class="ssub">Actions detail — filtered by owner</div>
+  <div class="sbar"><input type="text" id="owq" placeholder="Filter by owner..." oninput="rOwners()"><button class="clr" onclick="document.getElementById('owq').value='';rOwners()">Clear</button></div>
+  <div class="tw"><table><thead><tr><th style="width:35%">Action</th><th style="width:17%">Initiative</th><th style="width:18%">Owner</th><th style="width:10%">Due</th><th style="width:7%">Age</th><th style="width:13%">Status</th></tr></thead><tbody id="ow-body"></tbody></table></div>
+</div>
+
+<!-- ACTIONS -->
 <div id="actions" class="panel">
-  <div class="mc-grid" id="a-mc"></div>
-  <div class="filter-area" id="a-fa"></div>
-  <div class="sbar"><input type="text" id="aq" placeholder="Search actions..." oninput="rA()"><label><input type="checkbox" id="a-done" onchange="rA()"> Show complete</label><button class="clr" onclick="clrF('a')">Clear filters</button></div>
-  <div class="tbl-wrap"><table><thead><tr><th style="width:31%">Action</th><th style="width:16%">Initiative</th><th style="width:13%">Owner</th><th style="width:8%">Due</th><th style="width:6%">Age</th><th style="width:9%">Status</th><th style="width:17%">Edit</th></tr></thead><tbody id="a-body"></tbody></table></div>
+  <div class="mc4" id="a-mc"></div>
+  <div class="fa" id="a-fa"></div>
+  <div class="sbar"><input type="text" id="aq" placeholder="Search..." oninput="rA()"><label><input type="checkbox" id="a-done" onchange="rA()"> Show complete</label><button class="clr" onclick="clrF('a')">Clear</button></div>
+  <div class="tw"><table><thead><tr><th style="width:30%">Action</th><th style="width:15%">Initiative</th><th style="width:13%">Owner</th><th style="width:8%">Due</th><th style="width:6%">Age</th><th style="width:9%">Status</th><th style="width:10%">Linked risk</th><th style="width:9%">Edit</th></tr></thead><tbody id="a-body"></tbody></table></div>
 </div>
 
+<!-- RISKS -->
 <div id="risks" class="panel">
-  <div class="mc-grid" id="r-mc"></div>
-  <div class="filter-area" id="r-fa"></div>
-  <div class="sbar"><input type="text" id="rq" placeholder="Search risks..." oninput="rR()"><label><input type="checkbox" id="r-res" onchange="rR()"> Show resolved</label><button class="clr" onclick="clrF('r')">Clear filters</button></div>
-  <div class="tbl-wrap"><table><thead><tr><th style="width:28%">Risk</th><th style="width:15%">Initiative</th><th style="width:12%">Owner</th><th style="width:7%">RAG</th><th style="width:6%">Age</th><th style="width:8%">Status</th><th style="width:15%">Mitigation</th><th style="width:9%">Edit</th></tr></thead><tbody id="r-body"></tbody></table></div>
+  <div class="mc4" id="r-mc"></div>
+  <div class="fa" id="r-fa"></div>
+  <div class="sbar"><input type="text" id="rq" placeholder="Search..." oninput="rR()"><label><input type="checkbox" id="r-res" onchange="rR()"> Show resolved</label><button class="clr" onclick="clrF('r')">Clear</button></div>
+  <div class="tw"><table><thead><tr><th style="width:26%">Risk</th><th style="width:14%">Initiative</th><th style="width:12%">Owner</th><th style="width:7%">RAG</th><th style="width:6%">Age</th><th style="width:8%">Status</th><th style="width:14%">Mitigation</th><th style="width:5%">Actions</th><th style="width:8%">Edit</th></tr></thead><tbody id="r-body"></tbody></table></div>
 </div>
 
+<!-- DECISIONS -->
 <div id="decisions" class="panel">
-  <div class="filter-area" id="d-fa"></div>
-  <div class="sbar"><input type="text" id="dq" placeholder="Search decisions..." oninput="rD()"><label><input type="checkbox" id="d-dec" onchange="rD()"> Show decided</label><button class="clr" onclick="clrF('d')">Clear filters</button></div>
-  <div class="tbl-wrap"><table><thead><tr><th style="width:43%">Decision</th><th style="width:18%">Initiative</th><th style="width:12%">Owner</th><th style="width:7%">Age</th><th style="width:8%">Type</th><th style="width:12%">Edit</th></tr></thead><tbody id="d-body"></tbody></table></div>
+  <div class="fa" id="d-fa"></div>
+  <div class="sbar"><input type="text" id="dq" placeholder="Search..." oninput="rD()"><label><input type="checkbox" id="d-dec" onchange="rD()"> Show decided</label><button class="clr" onclick="clrF('d')">Clear</button></div>
+  <div class="tw"><table><thead><tr><th style="width:43%">Decision</th><th style="width:17%">Initiative</th><th style="width:12%">Owner</th><th style="width:7%">Age</th><th style="width:8%">Type</th><th style="width:13%">Edit</th></tr></thead><tbody id="d-body"></tbody></table></div>
 </div>
 
+<!-- INITIATIVES -->
 <div id="initiatives" class="panel">
-  <div class="mc-grid" id="i-mc"></div>
-  <div class="sbar"><input type="text" id="iq" placeholder="Search..." oninput="rI()"><div class="chip-wrap" id="i-chips"></div><button class="clr" onclick="clrF('i')">Clear</button></div>
-  <div class="tbl-wrap"><table><thead><tr><th style="width:18%">Initiative</th><th style="width:9%">Status</th><th style="width:11%">Owner</th><th style="width:7%">Due</th><th style="width:24%">Where we are</th><th style="width:22%">Next steps</th><th style="width:9%">Edit</th></tr></thead><tbody id="i-body"></tbody></table></div>
+  <div class="mc4" id="i-mc"></div>
+  <div class="sbar"><input type="text" id="iq" placeholder="Search..." oninput="rI()"><div class="cw" id="i-chips"></div><button class="clr" onclick="clrF('i')">Clear</button></div>
+  <div class="tw"><table><thead><tr><th style="width:15%">Initiative</th><th style="width:8%">Status</th><th style="width:5%">Trend</th><th style="width:10%">Owner</th><th style="width:7%">Due</th><th style="width:19%">Where we are</th><th style="width:18%">Next steps</th><th style="width:10%">Dependencies</th><th style="width:8%">Edit</th></tr></thead><tbody id="i-body"></tbody></table></div>
 </div>
 
+<!-- GANTT -->
 <div id="gantt" class="panel">
   <div id="g-wrap" style="overflow-x:auto"></div>
   <p style="font-size:11px;color:var(--tx3);margin-top:10px">Orange line = today. Sorted by urgency.</p>
 </div>
 
+<!-- ADD UPDATE -->
 <div id="manual" class="panel">
   <p style="font-size:13px;color:var(--tx2);margin-bottom:14px">Updates persist in your browser. Copy all and paste into Claude to incorporate into the next standup.</p>
   <div class="ssub">Add a manual update</div>
   <div class="mform">
-    <div class="r2"><div><label>Type</label><select id="mt2"><option value="action">Action</option><option value="risk">Risk</option><option value="decision">Decision</option><option value="note">Note</option></select></div><div><label>Initiative</label><input type="text" id="mi" placeholder="Initiative name"></div></div>
+    <div class="r2"><div><label>Type</label><select id="mt2"><option value="action">Action</option><option value="risk">Risk</option><option value="decision">Decision</option><option value="note">Initiative note</option></select></div><div><label>Initiative</label><input type="text" id="mi" placeholder="Initiative name"></div></div>
     <div class="r2"><div><label>Description</label><input type="text" id="md" placeholder="Brief description"></div><div><label>Owner</label><input type="text" id="mo" placeholder="Owner"></div></div>
     <div class="r3"><div><label>Due date</label><input type="text" id="mdue" placeholder="dd/mm/yyyy"></div><div><label>Status / RAG</label><select id="ms"><option>Not started</option><option>In progress</option><option>Complete</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option><option>Open</option></select></div><div><label>Detail</label><input type="text" id="mu" placeholder="One-line update"></div></div>
     <button class="svbig" onclick="svM()">Save update</button>
@@ -182,98 +262,104 @@ tr:last-child td{border-bottom:none}tbody tr:hover td{background:var(--bg2)}tbod
 <script>
 const TODAY=new Date('2026-05-26'),WEEK_END=new Date('2026-06-01'),NW_START=new Date('2026-06-01'),NW_END=new Date('2026-06-07'),DD='26 May 2026';
 document.getElementById('hd').textContent='Week ending '+DD;
-document.getElementById('mt').textContent='Data as at '+DD+'. Upload a new index.html to GitHub after each standup.';
+document.getElementById('mt').textContent='Data as at '+DD+'. Upload a new index.html to GitHub after each standup to keep current.';
 document.getElementById('tw-b').textContent='26 May \u2013 1 June 2026';
 document.getElementById('nw-b').textContent='1\u20137 June 2026';
 document.getElementById('ft').textContent='Last updated: '+DD+' \u00b7 PX Program Management \u00b7 FCTG';
-const ACTIONS=[{"action": "Seth to send email today to Group 2 staff — confirm soft launch next week, daily check-in invites (~2–3pm starting Monday)", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Seth Thomasson", "due": "26/05/2026", "status": "Complete", "update": "Soft launch 1 June. Daily check-ins to guide team through data validation week."}, {"action": "Transaction catch-up processing — approximately 75 AU hires plus next-week cohort", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Seth Thomasson / ETS team", "due": "06/06/2026", "status": "In progress", "update": "Data loaded into tenants. Volumes significant but not as bad as feared. Still a lot of work."}, {"action": "Org chart double-check before soft launch — Group 1 will see Group 2 structure for first time", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "All people partners", "due": "01/06/2026", "status": "Not started", "update": "Lisa Baker flagged Americas is cut off from global — needs review before go-live."}, {"action": "Data governance: agree reporting definitions, methodology and ownership before any external sharing", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth / Seth Thomasson", "due": "30/06/2026", "status": "Not started", "update": "No reporting to be shared externally until runbook agreed. Cat Watters to help with runbook."}, {"action": "Cat Watters to lead reporting runbook — agreed metrics, calculation methodology, data ownership", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Cat Watters / Kara Holdsworth", "due": "30/06/2026", "status": "Not started", "update": "Quick win: agree what the metrics are and how they are calculated before any reporting goes out."}, {"action": "AMS SPL role — third round interview required before appointment; monitor timeline", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Seth Thomasson", "due": "30/06/2026", "status": "In progress", "update": "SPL candidate identified after second round. Third round will delay further. AMS confidence level still very low."}, {"action": "Revised KPI template to be reissued to GFLT — waiting on sign-off then go", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "Michelle Clements / Kara Holdsworth", "due": "30/05/2026", "status": "In progress", "update": "Template being rebuilt. Pre-populated with all CALL report people. Finance to fill out their own data."}, {"action": "CorPET Thursday morning next week — PX KPI reset session. All PET to review KPIs ahead of time", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "All PET", "due": "04/06/2026", "status": "Not started", "update": "Sam ran PX KPIs through Claude — most do not meet the stretch requirement. Reset needed."}, {"action": "Sam to send KPI document to regional partners for consolidated feedback", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "Sam van Gool / Kara Holdsworth", "due": "27/05/2026", "status": "Complete", "update": "Lisa Baker requested regional partners receive the document to consolidate feedback."}, {"action": "Kristill to confirm whether Americas staff on 100% individual incentive need 50% profit added back", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "Kristill Loxton", "due": "30/05/2026", "status": "Not started", "update": "Lisa Baker flagged Americas has people on 100% individual incentives. Waiting on Songy confirmation."}, {"action": "Hard deadline: all REM changes to be received by COB Tuesday 2 June — anything after will not make exec RemCo", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "All people partners / Michelle Clements", "due": "02/06/2026", "status": "Not started", "update": "Exec RemCo is Friday 6 June. Wednesday morning Michelle runs all reporting. Tuesday COB is the absolute cut-off."}, {"action": "Allisa to chase Anna Wong — Asia REM file status and structural change context", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell", "due": "27/05/2026", "status": "Not started", "update": "Asia confidentially moving to AUSPAC reporting model for Corporate. May change dependency on Asia file."}, {"action": "Kara to chase Lucy Clifton (EMEA/UAE) tonight — file outstanding", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth", "due": "26/05/2026", "status": "Complete", "update": "UAE outstanding. Lucy aware deadlines are tight. TV Connect issue flagged. Need by next week."}, {"action": "Kara to find next RemCo date for Mexico and work backwards for Maren's pre-October deadline", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth", "due": "30/05/2026", "status": "Not started", "update": "Mexico completed for this cycle but Maren wants pre-October changes. Need RemCo date to plan timeline."}, {"action": "PX global comms to go live on WorkVivo — Wednesday night 27 May (Allisa's video + HubSpot comms)", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell / Carmine Asbury", "due": "27/05/2026", "status": "Not started", "update": "Allisa recorded video yesterday. HubSpot comms being prepared by Carmine. Regional partners to review today."}, {"action": "Senior leader note to follow after WorkVivo PX comms go live", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell", "due": "29/05/2026", "status": "Not started", "update": "Senior leaders to receive follow-up note after whole-of-PX comms are published."}, {"action": "Megan to inform regional teams that AU leader role transitions to Mel effective 1 July — on tonight's call", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Megan Vorster", "due": "26/05/2026", "status": "Complete", "update": "Lisa Baker flagged regional teams do not yet know. Megan to give the news on tonight's regional call."}, {"action": "Workday suborg / reporting line for regional PX staff to be resolved post-go-live", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell / Seth Thomasson", "due": "30/06/2026", "status": "Not started", "update": "Does Lisa Baker report to Allisa in Workday? Double hard line position not confirmed. Move in as-is and work through."}, {"action": "Wink platform: push vendor for 25 June delivery. If missed, target mid-July for launch to everyone by end July", "initiative": "Wink / Global Benefits", "dateAdded": "26/05/2026", "owner": "Megan Vorster", "due": "25/06/2026", "status": "In progress", "update": "Reward Gateway extended 3 months to end August. Megan not confident on 25 June. Not ideal to launch first two weeks July."}, {"action": "Kara to get go-ahead for Articulate for French and Spanish translations — check cost structure with Dani", "initiative": "Global Induction", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth / Dani", "due": "30/05/2026", "status": "In progress", "update": "Legal compliance risk in Canada — daily fines for non-French content. Mexico also needs Spanish. Lisa Baker to be informed of cost and process."}, {"action": "PET members to provide feedback on Brett's FCTG Assessment Deployment Plan — sent 6 May, deadline was yesterday", "initiative": "Leadership Capability Framework", "dateAdded": "26/05/2026", "owner": "All PET", "due": "26/05/2026", "status": "Not started", "update": "Brett will proceed on assumption it is accepted if no comments received. Provide any feedback now if not already done."}, {"action": "CorPET Thursday — LCF and KPI reset session. Review KPIs ahead of time and come with alternatives", "initiative": "Leadership Capability Framework", "dateAdded": "26/05/2026", "owner": "All PET", "due": "04/06/2026", "status": "Not started", "update": "PX KPI reset to happen at CorPET Thursday morning next week alongside LCF review."}, {"action": "Continue monitoring hypercare — flag issues to Seth immediately", "initiative": "Workday Group 1", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "01/05/2026", "status": "Complete", "update": "Workday Group 1 hypercare complete. Exited 1 May."}, {"action": "Communicate org structure lock (4 May) and data freeze (11 May) to ET teams", "initiative": "Workday Group 2", "dateAdded": "23/04/2026", "owner": "All people partners", "due": "04/05/2026", "status": "Complete", "update": "Org locked 4 May. Data freeze live 11 May."}, {"action": "Support data validation via spreadsheets before go-live", "initiative": "Workday Group 2", "dateAdded": "23/04/2026", "owner": "All people partners", "due": "11/05/2026", "status": "Complete", "update": "Data validation completed before go-live."}, {"action": "Attend Workday training sessions in May", "initiative": "Workday Group 2", "dateAdded": "23/04/2026", "owner": "All PX team members", "due": "31/05/2026", "status": "In progress", "update": "Training sessions running through May."}, {"action": "People partners to communicate 8 May REM return deadline to ET teams", "initiative": "Annual REM Review", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "08/05/2026", "status": "Complete", "update": "8 May deadline communicated. Files returned by most regions."}, {"action": "Confirm all RemCo dates — Corporate, Leisure, GBS, Supply", "initiative": "Annual REM Review", "dateAdded": "21/04/2026", "owner": "Kara / Michelle / Megan", "due": "28/04/2026", "status": "Complete", "update": "All RemCo dates confirmed."}, {"action": "Allisa to endorse KPI design principles paper and confirm Exec RemCo submission", "initiative": "KPI Framework", "dateAdded": "14/04/2026", "owner": "Allisa O'Connell", "due": "07/05/2026", "status": "Complete", "update": "Paper endorsed. Exec RemCo submitted."}, {"action": "Brett to update all LCF slides per 22 agreed actions", "initiative": "Leadership Capability Framework", "dateAdded": "21/04/2026", "owner": "Brett", "due": "28/04/2026", "status": "Complete", "update": "All 22 actions incorporated. Deck updated."}, {"action": "Brett and Megan to produce customer-facing LCF pack", "initiative": "Leadership Capability Framework", "dateAdded": "21/04/2026", "owner": "Brett / Megan Vorster", "due": "07/05/2026", "status": "In progress", "update": "In progress. Customer-ready version being finalised."}, {"action": "People partners to gather 360 rater lists for CT area leaders and NZ senior leaders", "initiative": "Leadership Capability Framework", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "21/05/2026", "status": "In progress", "update": "CT area leaders and NZ senior leaders — lists being gathered."}, {"action": "Allisa to endorse AI survey findings infographic for distribution to PX team", "initiative": "AI Enablement", "dateAdded": "09/04/2026", "owner": "Allisa O'Connell", "due": "18/05/2026", "status": "Complete", "update": "Infographic endorsed and distributed."}, {"action": "Allisa to endorse PX AI use case campaign on WorkVivo", "initiative": "AI Enablement", "dateAdded": "09/04/2026", "owner": "Allisa O'Connell", "due": "18/05/2026", "status": "Complete", "update": "WorkVivo campaign endorsed and published."}, {"action": "Confirm Claude licences for Lydia (Rem and Ben), Sam and Lynn (payroll)", "initiative": "AI Enablement", "dateAdded": "15/04/2026", "owner": "Allisa O'Connell", "due": "18/05/2026", "status": "Complete", "update": "Licences confirmed."}, {"action": "People partners to prepare divisional priorities for 27 May planning day", "initiative": "PX Strategy Planning", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "21/05/2026", "status": "Complete", "update": "Divisional priorities submitted ahead of 27 May planning day."}, {"action": "PX global comms live on WorkVivo — Allisa video and HubSpot comms", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa / Carmine", "due": "27/05/2026", "status": "Complete", "update": "PX global comms published to WorkVivo Wednesday 27 May."}, {"action": "Megan to inform regional teams of AU leader role change effective 1 July", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Megan Vorster", "due": "26/05/2026", "status": "Complete", "update": "Regional teams informed on 26 May call."}, {"action": "Allisa to ratify Workday Roadmap slides with Seth", "initiative": "PX Strategy Planning", "dateAdded": "21/04/2026", "owner": "Allisa O'Connell", "due": "27/05/2026", "status": "Complete", "update": "Roadmap slides ratified and presented at 27 May planning day."}];
-const RISKS=[{"risk": "Transaction catch-up volume — approximately 75 AU hires plus next-week cohort; team stretched", "initiative": "Workday Group 2", "owner": "Seth Thomasson", "rag": "High", "status": "In progress", "impact": "Delays to catch-up processing could create data quality issues at 1 June soft launch.", "mitigation": "Seth monitoring daily. Volumes less than worst case but still significant. Daily check-ins from Monday.", "dateRaised": "26/05/2026"}, {"risk": "AMS resourcing — SPL role third round interview delays appointment; AMS confidence very low", "initiative": "Workday Group 2", "owner": "Seth Thomasson", "rag": "High", "status": "Open", "impact": "AMS remains very slow and bumpy until SPL is in place. Ongoing risk to Americas operations.", "mitigation": "Seth and Tish interviewing. Shadowing Anthony in the interim. Third round cannot be avoided.", "dateRaised": "21/04/2026"}, {"risk": "Workday reporting shared externally before definitions and governance agreed", "initiative": "Workday Group 2", "owner": "Kara Holdsworth", "rag": "High", "status": "In progress", "impact": "Two conflicting data sources in market. Credibility of Workday data undermined before it is established.", "mitigation": "Short-term: no external reporting sharing. Cat Watters to lead reporting runbook — agree metrics, methodology, ownership.", "dateRaised": "26/05/2026"}, {"risk": "REM Review — UAE and Asia files still outstanding. Tuesday 2 June is the absolute cut-off", "initiative": "Annual REM Review", "owner": "Kara Holdsworth / Allisa O'Connell", "rag": "High", "status": "Open", "impact": "Any file not received by COB 2 June will not make exec RemCo (6 June). Effective date consequences apply.", "mitigation": "Kara chasing Lucy (UAE) tonight. Allisa to chase Anna (Asia). Asia structural change may change dependency.", "dateRaised": "21/04/2026"}, {"risk": "Asia structural change — potential move to AUSPAC reporting model for Corporate changes REM dependency", "initiative": "Annual REM Review", "owner": "Allisa O'Connell", "rag": "Medium", "status": "Open", "impact": "If Asia moves under AUSPAC before REM is finalised, the standalone Asia file dependency may change.", "mitigation": "Allisa to confirm with Anna. Confidential — not to be shared outside this group.", "dateRaised": "26/05/2026"}, {"risk": "PX KPIs — most do not meet stretch requirement after Claude review by Sam", "initiative": "KPI Framework", "owner": "Kara Holdsworth / Kristill Loxton", "rag": "High", "status": "Open", "impact": "PX sets KPIs that fail the five design principles. Undermines the framework. PX credibility at risk.", "mitigation": "CorPET reset session Thursday next week. All PET to review current KPIs and come with alternatives.", "dateRaised": "26/05/2026"}, {"risk": "Wink platform — 25 June delivery not confident. Launch in first two weeks of July is poor timing", "initiative": "Wink / Global Benefits", "owner": "Megan Vorster", "rag": "Medium", "status": "In progress", "impact": "If Wink misses 25 June, launch window moves to end of July. Reward Gateway costs continue.", "mitigation": "Megan pushing vendor for 25 June. Target: platform mid-July, launch to everyone by end July if needed.", "dateRaised": "21/04/2026"}, {"risk": "French and Spanish translation compliance — daily fines in Canada for non-French content", "initiative": "Global Induction", "owner": "Kara Holdsworth / Lisa Baker", "rag": "High", "status": "Open", "impact": "Legal compliance breach in Canada. Fines apply per day per non-compliant module. Mexico also non-compliant in Spanish.", "mitigation": "Kara to authorise Articulate. Check cost structure with Dani. Lisa Baker to be informed. Business will pay.", "dateRaised": "21/04/2026"}, {"risk": "Megan's AU leader role transition not communicated to regional teams — effective 1 July", "initiative": "Corporate PX Remit Review", "owner": "Megan Vorster", "rag": "Medium", "status": "Open", "impact": "Regional teams unaware of structural change. Creates confusion about who to contact for AU matters.", "mitigation": "Megan to inform regional teams on tonight's call.", "dateRaised": "21/04/2026"}, {"risk": "Exec RemCo submission fails — 80/20 vs 50/50 not resolved with Adam", "initiative": "KPI Framework", "owner": "Michelle Clements", "rag": "Critical", "status": "Resolved", "impact": "Paper rejected. July deadline slips.", "mitigation": "Michelle to confirm 50/50. Allisa to endorse.", "dateRaised": "14/04/2026"}, {"risk": "Corporate PX Remit — L&D community not yet fully briefed", "initiative": "Corporate PX Remit Review", "owner": "Allisa O'Connell", "rag": "Medium", "status": "In progress", "impact": "Information spreads informally. WorkVivo comms going out Wednesday night.", "mitigation": "Allisa video + HubSpot comms going out Wednesday 27 May. Senior leader note to follow.", "dateRaised": "21/04/2026"}, {"risk": "56% of PX using unsanctioned ChatGPT", "initiative": "AI Enablement", "owner": "Kara / Allisa", "rag": "High", "status": "Resolved", "impact": "Sensitive data in unsanctioned tools. Potential breach.", "mitigation": "Tool allocation guidelines to be issued.", "dateRaised": "09/04/2026"}, {"risk": "Monthly PX impact reporting — no template or metrics agreed", "initiative": "PX Monthly Impact Reporting", "owner": "Kara Holdsworth", "rag": "Medium", "status": "Open", "impact": "Allisa lacks consistent view of PX impact.", "mitigation": "Design template and agree metrics.", "dateRaised": "21/04/2026"}];
+
+const ACTIONS=[{"action": "Seth to send email today to Group 2 staff — confirm soft launch next week, daily check-in invites (~2–3pm starting Monday)", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Seth Thomasson", "due": "26/05/2026", "status": "Complete", "update": "Soft launch 1 June. Daily check-ins to guide team through data validation week."}, {"action": "Transaction catch-up processing — approximately 75 AU hires plus next-week cohort", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Seth Thomasson / ETS team", "due": "06/06/2026", "status": "In progress", "update": "Data loaded into tenants. Volumes significant but not as bad as feared. Still a lot of work.", "mitigatesRisk": ["r0"]}, {"action": "Org chart double-check before soft launch — Group 1 will see Group 2 structure for first time", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "All people partners", "due": "01/06/2026", "status": "Not started", "update": "Lisa Baker flagged Americas is cut off from global — needs review before go-live."}, {"action": "Data governance: agree reporting definitions, methodology and ownership before any external sharing", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth / Seth Thomasson", "due": "30/06/2026", "status": "Not started", "update": "No reporting to be shared externally until runbook agreed. Cat Watters to help with runbook."}, {"action": "Cat Watters to lead reporting runbook — agreed metrics, calculation methodology, data ownership", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Cat Watters / Kara Holdsworth", "due": "30/06/2026", "status": "Not started", "update": "Quick win: agree what the metrics are and how they are calculated before any reporting goes out."}, {"action": "AMS SPL role — third round interview required before appointment; monitor timeline", "initiative": "Workday Group 2", "dateAdded": "26/05/2026", "owner": "Seth Thomasson", "due": "30/06/2026", "status": "In progress", "update": "SPL candidate identified after second round. Third round will delay further. AMS confidence level still very low."}, {"action": "Revised KPI template to be reissued to GFLT — waiting on sign-off then go", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "Michelle Clements / Kara Holdsworth", "due": "30/05/2026", "status": "In progress", "update": "Template being rebuilt. Pre-populated with all CALL report people. Finance to fill out their own data."}, {"action": "CorPET Thursday morning next week — PX KPI reset session. All PET to review KPIs ahead of time", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "All PET", "due": "04/06/2026", "status": "Not started", "update": "Sam ran PX KPIs through Claude — most do not meet the stretch requirement. Reset needed.", "mitigatesRisk": ["r5"]}, {"action": "Sam to send KPI document to regional partners for consolidated feedback", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "Sam van Gool / Kara Holdsworth", "due": "27/05/2026", "status": "Complete", "update": "Lisa Baker requested regional partners receive the document to consolidate feedback."}, {"action": "Kristill to confirm whether Americas staff on 100% individual incentive need 50% profit added back", "initiative": "KPI Framework", "dateAdded": "26/05/2026", "owner": "Kristill Loxton", "due": "30/05/2026", "status": "Not started", "update": "Lisa Baker flagged Americas has people on 100% individual incentives. Waiting on Songy confirmation."}, {"action": "Hard deadline: all REM changes to be received by COB Tuesday 2 June — anything after will not make exec RemCo", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "All people partners / Michelle Clements", "due": "02/06/2026", "status": "Not started", "update": "Exec RemCo is Friday 6 June. Wednesday morning Michelle runs all reporting. Tuesday COB is the absolute cut-off."}, {"action": "Allisa to chase Anna Wong — Asia REM file status and structural change context", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell", "due": "27/05/2026", "status": "Not started", "update": "Asia confidentially moving to AUSPAC reporting model for Corporate. May change dependency on Asia file."}, {"action": "Kara to chase Lucy Clifton (EMEA/UAE) tonight — file outstanding", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth", "due": "26/05/2026", "status": "Complete", "update": "UAE outstanding. Lucy aware deadlines are tight. TV Connect issue flagged. Need by next week."}, {"action": "Kara to find next RemCo date for Mexico and work backwards for Maren's pre-October deadline", "initiative": "Annual REM Review", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth", "due": "30/05/2026", "status": "Not started", "update": "Mexico completed for this cycle but Maren wants pre-October changes. Need RemCo date to plan timeline."}, {"action": "PX global comms to go live on WorkVivo — Wednesday night 27 May (Allisa's video + HubSpot comms)", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell / Carmine Asbury", "due": "27/05/2026", "status": "Not started", "update": "Allisa recorded video yesterday. HubSpot comms being prepared by Carmine. Regional partners to review today."}, {"action": "Senior leader note to follow after WorkVivo PX comms go live", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell", "due": "29/05/2026", "status": "Not started", "update": "Senior leaders to receive follow-up note after whole-of-PX comms are published."}, {"action": "Megan to inform regional teams that AU leader role transitions to Mel effective 1 July — on tonight's call", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Megan Vorster", "due": "26/05/2026", "status": "Complete", "update": "Lisa Baker flagged regional teams do not yet know. Megan to give the news on tonight's regional call."}, {"action": "Workday suborg / reporting line for regional PX staff to be resolved post-go-live", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa O'Connell / Seth Thomasson", "due": "30/06/2026", "status": "Not started", "update": "Does Lisa Baker report to Allisa in Workday? Double hard line position not confirmed. Move in as-is and work through."}, {"action": "Wink platform: push vendor for 25 June delivery. If missed, target mid-July for launch to everyone by end July", "initiative": "Wink / Global Benefits", "dateAdded": "26/05/2026", "owner": "Megan Vorster", "due": "25/06/2026", "status": "In progress", "update": "Reward Gateway extended 3 months to end August. Megan not confident on 25 June. Not ideal to launch first two weeks July.", "mitigatesRisk": ["r6"]}, {"action": "Kara to get go-ahead for Articulate for French and Spanish translations — check cost structure with Dani", "initiative": "Global Induction", "dateAdded": "26/05/2026", "owner": "Kara Holdsworth / Dani", "due": "30/05/2026", "status": "In progress", "update": "Legal compliance risk in Canada — daily fines for non-French content. Mexico also needs Spanish. Lisa Baker to be informed of cost and process."}, {"action": "PET members to provide feedback on Brett's FCTG Assessment Deployment Plan — sent 6 May, deadline was yesterday", "initiative": "Leadership Capability Framework", "dateAdded": "26/05/2026", "owner": "All PET", "due": "26/05/2026", "status": "Not started", "update": "Brett will proceed on assumption it is accepted if no comments received. Provide any feedback now if not already done."}, {"action": "CorPET Thursday — LCF and KPI reset session. Review KPIs ahead of time and come with alternatives", "initiative": "Leadership Capability Framework", "dateAdded": "26/05/2026", "owner": "All PET", "due": "04/06/2026", "status": "Not started", "update": "PX KPI reset to happen at CorPET Thursday morning next week alongside LCF review.", "mitigatesRisk": ["r5"]}, {"action": "Continue monitoring hypercare — flag issues to Seth immediately", "initiative": "Workday Group 1", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "01/05/2026", "status": "Complete", "update": "Workday Group 1 hypercare complete. Exited 1 May."}, {"action": "Communicate org structure lock (4 May) and data freeze (11 May) to ET teams", "initiative": "Workday Group 2", "dateAdded": "23/04/2026", "owner": "All people partners", "due": "04/05/2026", "status": "Complete", "update": "Org locked 4 May. Data freeze live 11 May."}, {"action": "Support data validation via spreadsheets before go-live", "initiative": "Workday Group 2", "dateAdded": "23/04/2026", "owner": "All people partners", "due": "11/05/2026", "status": "Complete", "update": "Data validation completed before go-live."}, {"action": "Attend Workday training sessions in May", "initiative": "Workday Group 2", "dateAdded": "23/04/2026", "owner": "All PX team members", "due": "31/05/2026", "status": "In progress", "update": "Training sessions running through May."}, {"action": "People partners to communicate 8 May REM return deadline to ET teams", "initiative": "Annual REM Review", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "08/05/2026", "status": "Complete", "update": "8 May deadline communicated. Files returned by most regions."}, {"action": "Confirm all RemCo dates — Corporate, Leisure, GBS, Supply", "initiative": "Annual REM Review", "dateAdded": "21/04/2026", "owner": "Kara / Michelle / Megan", "due": "28/04/2026", "status": "Complete", "update": "All RemCo dates confirmed."}, {"action": "Allisa to endorse KPI design principles paper and confirm Exec RemCo submission", "initiative": "KPI Framework", "dateAdded": "14/04/2026", "owner": "Allisa O'Connell", "due": "07/05/2026", "status": "Complete", "update": "Paper endorsed. Exec RemCo submitted.", "mitigatesRisk": ["r9"]}, {"action": "Brett to update all LCF slides per 22 agreed actions", "initiative": "Leadership Capability Framework", "dateAdded": "21/04/2026", "owner": "Brett", "due": "28/04/2026", "status": "Complete", "update": "All 22 actions incorporated. Deck updated."}, {"action": "Brett and Megan to produce customer-facing LCF pack", "initiative": "Leadership Capability Framework", "dateAdded": "21/04/2026", "owner": "Brett / Megan Vorster", "due": "07/05/2026", "status": "In progress", "update": "In progress. Customer-ready version being finalised."}, {"action": "People partners to gather 360 rater lists for CT area leaders and NZ senior leaders", "initiative": "Leadership Capability Framework", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "21/05/2026", "status": "In progress", "update": "CT area leaders and NZ senior leaders — lists being gathered."}, {"action": "Allisa to endorse AI survey findings infographic for distribution to PX team", "initiative": "AI Enablement", "dateAdded": "09/04/2026", "owner": "Allisa O'Connell", "due": "18/05/2026", "status": "Complete", "update": "Infographic endorsed and distributed."}, {"action": "Allisa to endorse PX AI use case campaign on WorkVivo", "initiative": "AI Enablement", "dateAdded": "09/04/2026", "owner": "Allisa O'Connell", "due": "18/05/2026", "status": "Complete", "update": "WorkVivo campaign endorsed and published."}, {"action": "Confirm Claude licences for Lydia (Rem and Ben), Sam and Lynn (payroll)", "initiative": "AI Enablement", "dateAdded": "15/04/2026", "owner": "Allisa O'Connell", "due": "18/05/2026", "status": "Complete", "update": "Licences confirmed."}, {"action": "People partners to prepare divisional priorities for 27 May planning day", "initiative": "PX Strategy Planning", "dateAdded": "21/04/2026", "owner": "All people partners", "due": "21/05/2026", "status": "Complete", "update": "Divisional priorities submitted ahead of 27 May planning day."}, {"action": "PX global comms live on WorkVivo — Allisa video and HubSpot comms", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Allisa / Carmine", "due": "27/05/2026", "status": "Complete", "update": "PX global comms published to WorkVivo Wednesday 27 May."}, {"action": "Megan to inform regional teams of AU leader role change effective 1 July", "initiative": "Corporate PX Remit Review", "dateAdded": "26/05/2026", "owner": "Megan Vorster", "due": "26/05/2026", "status": "Complete", "update": "Regional teams informed on 26 May call."}, {"action": "Allisa to ratify Workday Roadmap slides with Seth", "initiative": "PX Strategy Planning", "dateAdded": "21/04/2026", "owner": "Allisa O'Connell", "due": "27/05/2026", "status": "Complete", "update": "Roadmap slides ratified and presented at 27 May planning day."}];
+const RISKS=[{"risk": "Transaction catch-up volume — approximately 75 AU hires plus next-week cohort; team stretched", "initiative": "Workday Group 2", "owner": "Seth Thomasson", "rag": "High", "status": "In progress", "impact": "Delays to catch-up processing could create data quality issues at 1 June soft launch.", "mitigation": "Seth monitoring daily. Volumes less than worst case but still significant. Daily check-ins from Monday.", "dateRaised": "26/05/2026", "mitigatedBy": ["a1"]}, {"risk": "AMS resourcing — SPL role third round interview delays appointment; AMS confidence very low", "initiative": "Workday Group 2", "owner": "Seth Thomasson", "rag": "High", "status": "Open", "impact": "AMS remains very slow and bumpy until SPL is in place. Ongoing risk to Americas operations.", "mitigation": "Seth and Tish interviewing. Shadowing Anthony in the interim. Third round cannot be avoided.", "dateRaised": "21/04/2026", "mitigatedBy": []}, {"risk": "Workday reporting shared externally before definitions and governance agreed", "initiative": "Workday Group 2", "owner": "Kara Holdsworth", "rag": "High", "status": "In progress", "impact": "Two conflicting data sources in market. Credibility of Workday data undermined before it is established.", "mitigation": "Short-term: no external reporting sharing. Cat Watters to lead reporting runbook — agree metrics, methodology, ownership.", "dateRaised": "26/05/2026", "mitigatedBy": []}, {"risk": "REM Review — UAE and Asia files still outstanding. Tuesday 2 June is the absolute cut-off", "initiative": "Annual REM Review", "owner": "Kara Holdsworth / Allisa O'Connell", "rag": "High", "status": "Open", "impact": "Any file not received by COB 2 June will not make exec RemCo (6 June). Effective date consequences apply.", "mitigation": "Kara chasing Lucy (UAE) tonight. Allisa to chase Anna (Asia). Asia structural change may change dependency.", "dateRaised": "21/04/2026", "mitigatedBy": []}, {"risk": "Asia structural change — potential move to AUSPAC reporting model for Corporate changes REM dependency", "initiative": "Annual REM Review", "owner": "Allisa O'Connell", "rag": "Medium", "status": "Open", "impact": "If Asia moves under AUSPAC before REM is finalised, the standalone Asia file dependency may change.", "mitigation": "Allisa to confirm with Anna. Confidential — not to be shared outside this group.", "dateRaised": "26/05/2026", "mitigatedBy": []}, {"risk": "PX KPIs — most do not meet stretch requirement after Claude review by Sam", "initiative": "KPI Framework", "owner": "Kara Holdsworth / Kristill Loxton", "rag": "High", "status": "Open", "impact": "PX sets KPIs that fail the five design principles. Undermines the framework. PX credibility at risk.", "mitigation": "CorPET reset session Thursday next week. All PET to review current KPIs and come with alternatives.", "dateRaised": "26/05/2026", "mitigatedBy": ["a7", "a21"]}, {"risk": "Wink platform — 25 June delivery not confident. Launch in first two weeks of July is poor timing", "initiative": "Wink / Global Benefits", "owner": "Megan Vorster", "rag": "Medium", "status": "In progress", "impact": "If Wink misses 25 June, launch window moves to end of July. Reward Gateway costs continue.", "mitigation": "Megan pushing vendor for 25 June. Target: platform mid-July, launch to everyone by end July if needed.", "dateRaised": "21/04/2026", "mitigatedBy": ["a18"]}, {"risk": "French and Spanish translation compliance — daily fines in Canada for non-French content", "initiative": "Global Induction", "owner": "Kara Holdsworth / Lisa Baker", "rag": "High", "status": "Open", "impact": "Legal compliance breach in Canada. Fines apply per day per non-compliant module. Mexico also non-compliant in Spanish.", "mitigation": "Kara to authorise Articulate. Check cost structure with Dani. Lisa Baker to be informed. Business will pay.", "dateRaised": "21/04/2026", "mitigatedBy": []}, {"risk": "Megan's AU leader role transition not communicated to regional teams — effective 1 July", "initiative": "Corporate PX Remit Review", "owner": "Megan Vorster", "rag": "Medium", "status": "Open", "impact": "Regional teams unaware of structural change. Creates confusion about who to contact for AU matters.", "mitigation": "Megan to inform regional teams on tonight's call.", "dateRaised": "21/04/2026", "mitigatedBy": []}, {"risk": "Exec RemCo submission fails — 80/20 vs 50/50 not resolved with Adam", "initiative": "KPI Framework", "owner": "Michelle Clements", "rag": "Critical", "status": "Resolved", "impact": "Paper rejected. July deadline slips.", "mitigation": "Michelle to confirm 50/50. Allisa to endorse.", "dateRaised": "14/04/2026", "mitigatedBy": ["a28"]}, {"risk": "Corporate PX Remit — L&D community not yet fully briefed", "initiative": "Corporate PX Remit Review", "owner": "Allisa O'Connell", "rag": "Medium", "status": "In progress", "impact": "Information spreads informally. WorkVivo comms going out Wednesday night.", "mitigation": "Allisa video + HubSpot comms going out Wednesday 27 May. Senior leader note to follow.", "dateRaised": "21/04/2026", "mitigatedBy": []}, {"risk": "56% of PX using unsanctioned ChatGPT", "initiative": "AI Enablement", "owner": "Kara / Allisa", "rag": "High", "status": "Resolved", "impact": "Sensitive data in unsanctioned tools. Potential breach.", "mitigation": "Tool allocation guidelines to be issued.", "dateRaised": "09/04/2026", "mitigatedBy": []}, {"risk": "Monthly PX impact reporting — no template or metrics agreed", "initiative": "PX Monthly Impact Reporting", "owner": "Kara Holdsworth", "rag": "Medium", "status": "Open", "impact": "Allisa lacks consistent view of PX impact.", "mitigation": "Design template and agree metrics.", "dateRaised": "21/04/2026", "mitigatedBy": []}];
 const DECISIONS=[{"d": "Wages/compensation will NOT be visible in Workday at go-live. Decision post-REM review, in consultation with Michelle and Brody.", "i": "Workday Group 2", "t": "DECIDED", "o": "Seth Thomasson / Kara", "dateAdded": "21/04/2026"}, {"d": "No reporting to be shared externally until definitions, methodology and ownership are agreed. Short-term: PX community only.", "i": "Workday Group 2", "t": "DECIDED", "o": "Kara Holdsworth / Seth", "dateAdded": "21/04/2026"}, {"d": "Cat Watters to lead reporting runbook — agreed metrics, calculation methodology, ownership. Post-hypercare.", "i": "Workday Group 2", "t": "DECIDED", "o": "Kara Holdsworth / Seth", "dateAdded": "21/04/2026"}, {"d": "Core enhancement deployed to production 25 May. Melbourne solution — termination timing, LOA returns, email addresses.", "i": "Workday Group 2", "t": "DECIDED", "o": "Seth Thomasson", "dateAdded": "21/04/2026"}, {"d": "Hard deadline for REM changes: COB Tuesday 2 June. Anything after will not make exec RemCo (6 June).", "i": "Annual REM Review", "t": "DECIDED", "o": "Michelle Clements / Kara", "dateAdded": "21/04/2026"}, {"d": "Supply RemCo completed and signed off.", "i": "Annual REM Review", "t": "DECIDED", "o": "Michelle Clements", "dateAdded": "21/04/2026"}, {"d": "Mexico excluded from this cycle. Maren wants pre-October changes — Kara to find next RemCo date.", "i": "Annual REM Review", "t": "DECIDED", "o": "Kara Holdsworth", "dateAdded": "21/04/2026"}, {"d": "PX global comms going on WorkVivo Wednesday night 27 May. Senior leader note to follow.", "i": "Corporate PX Remit Review", "t": "DECIDED", "o": "Allisa O'Connell", "dateAdded": "21/04/2026"}, {"d": "Megan's AU leader role transitions to Mel effective 1 July. Regional teams to be told tonight.", "i": "Corporate PX Remit Review", "t": "DECIDED", "o": "Megan Vorster / Allisa", "dateAdded": "21/04/2026"}, {"d": "Workday suborg/reporting line for regional PX: move in as current structure, work through post-go-live.", "i": "Corporate PX Remit Review", "t": "DECIDED", "o": "Allisa O'Connell", "dateAdded": "21/04/2026"}, {"d": "Wink: Reward Gateway extended 3 months to end August. Push vendor for 25 June. Target: launch end July if needed.", "i": "Wink / Global Benefits", "t": "DECIDED", "o": "Megan Vorster", "dateAdded": "21/04/2026"}, {"d": "Articulate to be used for French (Canada) and Spanish (Mexico) translations. Kara to get go-ahead and confirm cost with Dani.", "i": "Global Induction", "t": "DECIDED", "o": "Kara Holdsworth", "dateAdded": "21/04/2026"}, {"d": "CorPET Thursday next week: PX KPI reset session. All PET to review KPIs ahead of time.", "i": "KPI Framework", "t": "DECIDED", "o": "Kara Holdsworth", "dateAdded": "21/04/2026"}, {"d": "Regional partners can communicate KPI framework direction to exec teams now. Wait for revised template before cascading detail.", "i": "KPI Framework", "t": "DECIDED", "o": "Kara / Michelle", "dateAdded": "21/04/2026"}, {"d": "Workforce planning roles default to 100% profit — cannot be measured yet.", "i": "KPI Framework", "t": "DECIDED", "o": "Kara Holdsworth", "dateAdded": "21/04/2026"}, {"d": "50/50 incentive split confirmed. 80/20 will not proceed.", "i": "KPI Framework", "t": "DECIDED", "o": "Michelle Clements", "dateAdded": "21/04/2026"}, {"d": "31 July is the hard deadline. Each division builds own timeline.", "i": "KPI Framework", "t": "DECIDED", "o": "Kara Holdsworth", "dateAdded": "21/04/2026"}, {"d": "Three-part model: Core PX (no opt-out), Divisional (L&D to brand), Regional (local execution stays).", "i": "Corporate PX Remit Review", "t": "DECIDED", "o": "Allisa / Adam", "dateAdded": "21/04/2026"}, {"d": "AU L&D moves to brand day-to-day from 1 July.", "i": "Corporate PX Remit Review", "t": "DECIDED", "o": "Allisa O'Connell", "dateAdded": "21/04/2026"}, {"d": "Gartner entry licence (~$60K) to replace Deloitte by 1 July.", "i": "AI Enablement", "t": "DECIDED", "o": "Allisa / Adam", "dateAdded": "21/04/2026"}, {"d": "$280K project budget. Stage-gated. CEO sign-off required.", "i": "Workday Phase 2", "t": "DECIDED", "o": "Kelli McCosker", "dateAdded": "21/04/2026"}, {"d": "H1 priorities: REM review integration, KPI tracking, improved reporting.", "i": "Workday Phase 2", "t": "DECIDED", "o": "Seth / Kelli", "dateAdded": "21/04/2026"}, {"d": "Deloitte engagement ends 30 June.", "i": "PX Budget and Cost Base", "t": "DECIDED", "o": "Allisa O'Connell", "dateAdded": "21/04/2026"}, {"d": "SHL all terminology changes confirmed. Cost $6.5K.", "i": "Leadership Capability Framework", "t": "DECIDED", "o": "Brett / SHL", "dateAdded": "21/04/2026"}, {"d": "Asia opt-out of REM review — Allisa to confirm no opt-out.", "i": "Annual REM Review", "t": "DECIDED", "o": "Allisa O'Connell", "dateAdded": "21/04/2026"}, {"d": "Articulate for French/Spanish translations — Kara to authorise and confirm cost structure with Dani.", "i": "Global Induction", "t": "PENDING", "o": "Kara Holdsworth", "dateAdded": "21/04/2026"}];
 const MTW=[{"date": "Wed 27 May", "desc": "PX Planning Day", "owner": "Kara / All PET"}, {"date": "Wed 27 May", "desc": "PX global comms live on WorkVivo (Allisa's video + HubSpot)", "owner": "Allisa / Carmine"}, {"date": "Wed 27 May", "desc": "LCF Emerging session — first delivery milestone", "owner": "Sam van Gool / Brett"}, {"date": "Wed 27 May", "desc": "Megan to inform regional teams of AU leader role change on tonight's call", "owner": "Megan Vorster"}];
 const MNW=[{"date": "Mon 1 June", "desc": "Workday Group 2 soft launch — PX access only", "owner": "Seth Thomasson"}, {"date": "Mon 1 June", "desc": "Daily check-in meetings begin — Group 2 PX and payroll teams (~2–3pm)", "owner": "Seth / Kara"}, {"date": "Mon 1 June", "desc": "Workday sandbox available — real data, refreshed Fridays", "owner": "Seth Thomasson"}, {"date": "Tue 2 June", "desc": "REM Review hard cut-off — COB Tuesday 2 June for all outstanding files", "owner": "Michelle Clements"}, {"date": "Tue 2 June", "desc": "Gartner PX maturity debrief", "owner": "Kara / Allisa"}, {"date": "Thu 4 June", "desc": "CorPET — PX KPI reset session and LCF review", "owner": "All PET"}, {"date": "Fri 6 June", "desc": "Exec RemCo — Annual REM Review", "owner": "Michelle Clements"}];
+const MALL=[{"date": "26/05/2026", "desc": "PX Planning Day", "initiative": "PX Strategy Planning", "owner": "Kara / All PET"}, {"date": "26/05/2026", "desc": "PX global comms live on WorkVivo", "initiative": "Corporate PX Remit Review", "owner": "Allisa / Carmine"}, {"date": "26/05/2026", "desc": "LCF Emerging session", "initiative": "Leadership Capability Framework", "owner": "Sam / Brett"}, {"date": "01/06/2026", "desc": "Workday Group 2 soft launch (PX only)", "initiative": "Workday Group 2", "owner": "Seth Thomasson"}, {"date": "02/06/2026", "desc": "Gartner PX maturity debrief", "initiative": "AI Enablement", "owner": "Kara / Allisa"}, {"date": "02/06/2026", "desc": "REM Review — COB cut-off for all changes", "initiative": "Annual REM Review", "owner": "Michelle Clements"}, {"date": "04/06/2026", "desc": "CorPET — PX KPI reset and LCF review", "initiative": "KPI Framework", "owner": "All PET"}, {"date": "06/06/2026", "desc": "Exec RemCo — Annual REM Review", "initiative": "Annual REM Review", "owner": "Michelle Clements"}, {"date": "08/06/2026", "desc": "Workday Group 2 hard launch — all employees", "initiative": "Workday Group 2", "owner": "Seth Thomasson"}, {"date": "08/06/2026", "desc": "AU Town Hall", "initiative": "Workday Group 2", "owner": "Allisa O'Connell"}, {"date": "15/06/2026", "desc": "Compass access turns off", "initiative": "Global Induction", "owner": "Sam van Gool"}, {"date": "15/06/2026", "desc": "Letters to leaders — Annual REM", "initiative": "Annual REM Review", "owner": "Michelle Clements"}, {"date": "25/06/2026", "desc": "Wink platform target delivery", "initiative": "Wink / Global Benefits", "owner": "Megan Vorster"}, {"date": "30/06/2026", "desc": "Deloitte engagement ends", "initiative": "PX Budget and Cost Base", "owner": "Allisa O'Connell"}, {"date": "30/06/2026", "desc": "Budget changes reflect new PX Remit model", "initiative": "Corporate PX Remit Review", "owner": "Kelli McCosker"}, {"date": "01/07/2026", "desc": "AU L&D moves to brand day-to-day", "initiative": "Corporate PX Remit Review", "owner": "Allisa O'Connell"}, {"date": "31/07/2026", "desc": "KPI Framework — hard deadline, all KPIs submitted", "initiative": "KPI Framework", "owner": "Kara Holdsworth"}, {"date": "31/07/2026", "desc": "Wink / Global Benefits launch to all employees", "initiative": "Wink / Global Benefits", "owner": "Megan Vorster"}];
 const INITIATIVES=[{"name": "Workday Group 2", "status": "On track", "start": "01/04/2026", "end": "08/06/2026"}, {"name": "Workday Phase 2 / Budget", "status": "On track", "start": "01/05/2026", "end": "30/09/2026"}, {"name": "Annual REM Review", "status": "At risk", "start": "14/04/2026", "end": "30/06/2026"}, {"name": "KPI Framework", "status": "On track", "start": "01/04/2026", "end": "31/07/2026"}, {"name": "Global Induction", "status": "On track", "start": "14/04/2026", "end": "01/06/2026"}, {"name": "Leadership Capability Framework", "status": "Delayed", "start": "21/04/2026", "end": "27/05/2026"}, {"name": "AI Enablement", "status": "On track", "start": "01/04/2026", "end": "30/09/2026"}, {"name": "Corporate PX Remit Review", "status": "On track", "start": "21/04/2026", "end": "30/06/2026"}, {"name": "PX Strategy Planning", "status": "Complete", "start": "01/05/2026", "end": "27/05/2026"}, {"name": "Succession Planning", "status": "On track", "start": "01/04/2026", "end": "30/06/2026"}, {"name": "Wink / Global Benefits", "status": "Delayed", "start": "01/03/2026", "end": "31/07/2026"}, {"name": "PX Budget and Cost Base", "status": "On track", "start": "30/04/2026", "end": "30/06/2026"}, {"name": "PX Monthly Impact Reporting", "status": "Not started", "start": "01/05/2026", "end": "27/05/2026"}, {"name": "HubSpot / PX Comms Governance", "status": "Not started", "start": "16/04/2026", "end": "30/06/2026"}];
-const INITS=[{"name": "Workday Group 2 (AU, NZ, Asia)", "status": "On track", "owner": "Seth Thomasson", "due": "08/06/2026", "summary": "Soft launch 1 June (PX only). Transaction catch-up underway — approximately 75 AU hires being processed. Core enhancement deployed 25 May. Daily check-ins begin Monday 1 June.", "nextSteps": ["Soft launch 1 June — PX access only, daily check-ins ~2–3pm", "Transaction catch-up processing complete before soft launch", "Org chart review — Group 1 will see Group 2 structure for first time", "Hard launch to all employees — 8 June"], "rag": "On track"}, {"name": "Annual REM Review", "status": "At risk", "owner": "Michelle Clements", "due": "30/06/2026", "summary": "Supply RemCo complete. Hard cut-off for all changes is COB Tuesday 2 June. UAE and Asia files still outstanding. Exec RemCo Friday 6 June.", "nextSteps": ["Outstanding files due COB Tuesday 2 June — no exceptions", "Allisa to chase Anna (Asia) — structural change may affect dependency", "Kara to chase Lucy (UAE) — file still outstanding", "Kara to confirm Mexico next RemCo date and work backwards for Maren", "Exec RemCo — Friday 6 June"], "rag": "At risk"}, {"name": "KPI Framework", "status": "On track", "owner": "Kara Holdsworth", "due": "31/07/2026", "summary": "Framework communicated to GFLT. Template being rebuilt and reissued. PX own KPIs fail stretch requirement per Claude review. CorPET reset session Thursday 4 June.", "nextSteps": ["Revised KPI template to be reissued to GFLT this week", "CorPET Thursday 4 June — PX KPI reset session, all PET to review ahead of time", "Kristill to confirm Americas 100% individual incentive situation with Songy", "Divisions to work backwards from 31 July hard deadline"], "rag": "On track"}, {"name": "Leadership Capability Framework", "status": "Delayed", "owner": "Sam van Gool / Brett", "due": "27/05/2026", "summary": "27 May Emerging session ran — first delivery milestone achieved. Comms pack being finalised. Customer-facing version in progress. 360 rater lists being gathered.", "nextSteps": ["Brett and Megan to finalise customer-facing LCF pack", "People partners to complete gathering 360 rater lists", "Brett to close gaps identified in Claude review of pack", "Brett's FCTG Assessment Deployment Plan — provide any outstanding comments"], "rag": "Delayed"}, {"name": "Corporate PX Remit Review", "status": "On track", "owner": "Allisa O'Connell", "due": "30/06/2026", "summary": "Three-part model in active execution. PX global comms published to WorkVivo 27 May. Megan's AU leader role transitioning to Mel from 1 July. Regional teams informed.", "nextSteps": ["Senior leader note to follow PX WorkVivo comms", "End of May: communications to all impacted individuals", "Kelli to finalise cost model aligned to three-part structure", "30 June: budget changes to reflect new model", "Workday suborg reporting line to be resolved post-go-live"], "rag": "On track"}, {"name": "Workday Group 2 — Soft Launch", "status": "On track", "owner": "Seth Thomasson", "due": "01/06/2026", "summary": "Soft launch 1 June is 6 days away. Data loaded into tenants. Daily check-ins to begin Monday with reports and guidance on what to check.", "nextSteps": ["1 June: PX access activated, sandbox available", "Daily check-ins begin — Seth to walk team through reports and corrections", "All Group 2 data governance rules apply from day one", "Hard launch to all employees — 8 June"], "rag": "On track"}, {"name": "AI Enablement", "status": "On track", "owner": "Kara / Kristill / Azi", "due": "30/09/2026", "summary": "Learning Hub live. Gartner maturity debrief next week. Gartner licence (~$60K) to replace Deloitte confirmed in principle. Weekly cadence with Azi and Carmine running.", "nextSteps": ["Gartner PX maturity debrief — week of 1 June", "Kelli and Allisa to approach Owen (Gartner) on entry licence pricing", "Allisa to speak to Dani (ETS) about releasing one Gartner licence", "Kristill to reconnect with Vic (Deloitte) before 30 June", "Tool allocation guidelines to be issued to all PX staff"], "rag": "On track"}, {"name": "Workday Phase 2 / Budget", "status": "On track", "owner": "Kara Holdsworth / Seth", "due": "30/09/2026", "summary": "$280K budget confirmed. Stage-gated. H1 priorities confirmed at 27 May planning day: REM review integration, KPI tracking, improved reporting. Day 2 approach discussed.", "nextSteps": ["Build business case for REM review Workday integration — H1 priority", "Seth to confirm resourcing for reporting improvements post-go-live", "Cat Watters to lead reporting runbook and metrics definition", "CEO sign-off required before any further Phase 2 work proceeds"], "rag": "On track"}, {"name": "PX Strategy Planning", "status": "Complete", "owner": "Kara Holdsworth", "due": "27/05/2026", "summary": "27 May planning day ran. Day 2 Workday approach, PX Remit model and cost narrative all discussed. Divisional priorities presented by people partners.", "nextSteps": ["Actions from planning day to be incorporated into portfolio", "Outputs to be circulated to PET within one week"], "rag": "Complete"}, {"name": "Global Induction", "status": "On track", "owner": "Sam van Gool", "due": "01/06/2026", "summary": "Live and working in Workday across all Group 1 regions. Group 2 Workday links added to comms pack. All regions have confirmed delivery approach. Leader guide distributed via Workday.", "nextSteps": ["Kara to authorise Articulate for French (Canada) and Spanish (Mexico) translations", "Confirm cost structure with Dani before communicating to Lisa Baker", "Group 2 go-live 1 June — induction links active for Group 2 regions", "Compass access turns off 15 June — ensure all content migrated"], "rag": "On track"}, {"name": "Succession Planning", "status": "On track", "owner": "Mel Armstrong", "due": "30/06/2026", "summary": "360 POC ongoing in Ignite and Corporate Traveller. Wider strategy paused pending Phase 2 Workday roadmap determination.", "nextSteps": ["Continue 360 POC in Ignite and Corporate Traveller", "Phase 2 Workday roadmap to be confirmed before strategy resumes", "Allisa to consciously reconfirm pause or trigger restart"], "rag": "On track"}, {"name": "Wink / Global Benefits", "status": "Delayed", "owner": "Megan Vorster", "due": "31/07/2026", "summary": "Reward Gateway extended 3 months to end August. Wink platform committed for 25 June but confidence is low. Target: platform mid-July, launch end July.", "nextSteps": ["Push vendor for 25 June platform delivery", "If missed: target platform mid-July, launch to everyone end July", "Megan to flag immediately if further delays emerge"], "rag": "Delayed"}, {"name": "PX Budget and Cost Base", "status": "On track", "owner": "Kelli McCosker", "due": "30/06/2026", "summary": "PX cost confirmed at 1.1% of revenue (FY26 and FY27). Power BI dashboard live. Natural attrition (~$300K savings) expected. Gartner licence plan replacing Deloitte.", "nextSteps": ["Kelli and Allisa to approach Owen (Gartner) on entry licence", "30 June: budget changes to reflect new PX Remit three-part model", "Deloitte engagement to end 30 June", "Identify remaining unidentified savings (~$300K)"], "rag": "On track"}, {"name": "PX Monthly Impact Reporting", "status": "Not started", "owner": "Kara Holdsworth", "due": "30/06/2026", "summary": "Template not yet designed. Metrics not agreed with Allisa. First report needed before the planning day has now passed — to be picked up post-27 May.", "nextSteps": ["Design reporting template and agree metrics with Allisa", "Agree frequency and distribution", "First report to be produced in June"], "rag": "Not started"}, {"name": "HubSpot / PX Comms Governance", "status": "Not started", "owner": "Sam van Gool", "due": "30/06/2026", "summary": "Steven Elvin request for PX input on global consistency outstanding. Parked pending planning day. To be progressed in June.", "nextSteps": ["Sam van Gool to lead PX response to Steven Elvin", "People partners to share regional considerations before Sam responds"], "rag": "Not started"}];
-let OVR=JSON.parse(localStorage.getItem('pxOvr')||'{}');
-let MAN=JSON.parse(localStorage.getItem('pxMan')||'[]');
-const SEL={};
-function svO(){localStorage.setItem('pxOvr',JSON.stringify(OVR));}
+const INITS=[{"name": "Workday Group 2 (AU, NZ, Asia)", "status": "On track", "owner": "Seth Thomasson", "due": "08/06/2026", "summary": "Soft launch 1 June (PX only). Transaction catch-up underway — approximately 75 AU hires being processed. Core enhancement deployed 25 May. Daily check-ins begin Monday 1 June.", "nextSteps": ["Soft launch 1 June — PX access only, daily check-ins ~2–3pm", "Transaction catch-up processing complete before soft launch", "Org chart review — Group 1 will see Group 2 structure for first time", "Hard launch to all employees — 8 June"], "rag": "On track", "trend": "up", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [{"date": "26/05/2026", "text": "Core enhancement deployed to production. Transaction catch-up underway."}, {"date": "19/05/2026", "text": "Leader drop-in sessions ran 21, 22, 25 May. ~100 attendees."}], "blockedBy": [], "blocks": []}, {"name": "Annual REM Review", "status": "At risk", "owner": "Michelle Clements", "due": "30/06/2026", "summary": "Supply RemCo complete. Hard cut-off for all changes is COB Tuesday 2 June. UAE and Asia files still outstanding. Exec RemCo Friday 6 June.", "nextSteps": ["Outstanding files due COB Tuesday 2 June — no exceptions", "Allisa to chase Anna (Asia) — structural change may affect dependency", "Kara to chase Lucy (UAE) — file still outstanding", "Kara to confirm Mexico next RemCo date and work backwards for Maren", "Exec RemCo — Friday 6 June"], "rag": "At risk", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "At risk"}], "notes": [], "blockedBy": [], "blocks": ["Workday Phase 2 / Budget"]}, {"name": "KPI Framework", "status": "On track", "owner": "Kara Holdsworth", "due": "31/07/2026", "summary": "Framework communicated to GFLT. Template being rebuilt and reissued. PX own KPIs fail stretch requirement per Claude review. CorPET reset session Thursday 4 June.", "nextSteps": ["Revised KPI template to be reissued to GFLT this week", "CorPET Thursday 4 June — PX KPI reset session, all PET to review ahead of time", "Kristill to confirm Americas 100% individual incentive situation with Songy", "Divisions to work backwards from 31 July hard deadline"], "rag": "On track", "trend": "up", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [{"date": "26/05/2026", "text": "Framework communicated to GFLT. PX KPI reset session at CorPET 4 June."}, {"date": "19/05/2026", "text": "Template being rebuilt. Sam ran PX KPIs through Claude — most fail stretch requirement."}], "blockedBy": [], "blocks": ["Workday Phase 2 / Budget"]}, {"name": "Leadership Capability Framework", "status": "Delayed", "owner": "Sam van Gool / Brett", "due": "27/05/2026", "summary": "27 May Emerging session ran — first delivery milestone achieved. Comms pack being finalised. Customer-facing version in progress. 360 rater lists being gathered.", "nextSteps": ["Brett and Megan to finalise customer-facing LCF pack", "People partners to complete gathering 360 rater lists", "Brett to close gaps identified in Claude review of pack", "Brett's FCTG Assessment Deployment Plan — provide any outstanding comments"], "rag": "Delayed", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "Delayed"}], "notes": [], "blockedBy": [], "blocks": []}, {"name": "Corporate PX Remit Review", "status": "On track", "owner": "Allisa O'Connell", "due": "30/06/2026", "summary": "Three-part model in active execution. PX global comms published to WorkVivo 27 May. Megan's AU leader role transitioning to Mel from 1 July. Regional teams informed.", "nextSteps": ["Senior leader note to follow PX WorkVivo comms", "End of May: communications to all impacted individuals", "Kelli to finalise cost model aligned to three-part structure", "30 June: budget changes to reflect new model", "Workday suborg reporting line to be resolved post-go-live"], "rag": "On track", "trend": "up", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [{"date": "26/05/2026", "text": "PX global comms on WorkVivo 27 May. Megan AU role to Mel effective 1 July."}, {"date": "19/05/2026", "text": "Screw intervention resolved. PX cost 1.1% of revenue confirmed."}], "blockedBy": ["PX Strategy Planning"], "blocks": []}, {"name": "Workday Group 2 — Soft Launch", "status": "On track", "owner": "Seth Thomasson", "due": "01/06/2026", "summary": "Soft launch 1 June is 6 days away. Data loaded into tenants. Daily check-ins to begin Monday with reports and guidance on what to check.", "nextSteps": ["1 June: PX access activated, sandbox available", "Daily check-ins begin — Seth to walk team through reports and corrections", "All Group 2 data governance rules apply from day one", "Hard launch to all employees — 8 June"], "rag": "On track", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [], "blockedBy": [], "blocks": []}, {"name": "AI Enablement", "status": "On track", "owner": "Kara / Kristill / Azi", "due": "30/09/2026", "summary": "Learning Hub live. Gartner maturity debrief next week. Gartner licence (~$60K) to replace Deloitte confirmed in principle. Weekly cadence with Azi and Carmine running.", "nextSteps": ["Gartner PX maturity debrief — week of 1 June", "Kelli and Allisa to approach Owen (Gartner) on entry licence pricing", "Allisa to speak to Dani (ETS) about releasing one Gartner licence", "Kristill to reconnect with Vic (Deloitte) before 30 June", "Tool allocation guidelines to be issued to all PX staff"], "rag": "On track", "trend": "up", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [], "blockedBy": [], "blocks": []}, {"name": "Workday Phase 2 / Budget", "status": "On track", "owner": "Kara Holdsworth / Seth", "due": "30/09/2026", "summary": "$280K budget confirmed. Stage-gated. H1 priorities confirmed at 27 May planning day: REM review integration, KPI tracking, improved reporting. Day 2 approach discussed.", "nextSteps": ["Build business case for REM review Workday integration — H1 priority", "Seth to confirm resourcing for reporting improvements post-go-live", "Cat Watters to lead reporting runbook and metrics definition", "CEO sign-off required before any further Phase 2 work proceeds"], "rag": "On track", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [], "blockedBy": ["Workday Group 2 (AU, NZ, Asia)"], "blocks": []}, {"name": "PX Strategy Planning", "status": "Complete", "owner": "Kara Holdsworth", "due": "27/05/2026", "summary": "27 May planning day ran. Day 2 Workday approach, PX Remit model and cost narrative all discussed. Divisional priorities presented by people partners.", "nextSteps": ["Actions from planning day to be incorporated into portfolio", "Outputs to be circulated to PET within one week"], "rag": "Complete", "trend": "up", "statusHistory": [{"date": "26/05/2026", "status": "Complete"}], "notes": [], "blockedBy": [], "blocks": ["Corporate PX Remit Review", "PX Budget and Cost Base"]}, {"name": "Global Induction", "status": "On track", "owner": "Sam van Gool", "due": "01/06/2026", "summary": "Live and working in Workday across all Group 1 regions. Group 2 Workday links added to comms pack. All regions have confirmed delivery approach. Leader guide distributed via Workday.", "nextSteps": ["Kara to authorise Articulate for French (Canada) and Spanish (Mexico) translations", "Confirm cost structure with Dani before communicating to Lisa Baker", "Group 2 go-live 1 June — induction links active for Group 2 regions", "Compass access turns off 15 June — ensure all content migrated"], "rag": "On track", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [], "blockedBy": ["Workday Group 2 (AU, NZ, Asia)"], "blocks": []}, {"name": "Succession Planning", "status": "On track", "owner": "Mel Armstrong", "due": "30/06/2026", "summary": "360 POC ongoing in Ignite and Corporate Traveller. Wider strategy paused pending Phase 2 Workday roadmap determination.", "nextSteps": ["Continue 360 POC in Ignite and Corporate Traveller", "Phase 2 Workday roadmap to be confirmed before strategy resumes", "Allisa to consciously reconfirm pause or trigger restart"], "rag": "On track", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [], "blockedBy": [], "blocks": []}, {"name": "Wink / Global Benefits", "status": "Delayed", "owner": "Megan Vorster", "due": "31/07/2026", "summary": "Reward Gateway extended 3 months to end August. Wink platform committed for 25 June but confidence is low. Target: platform mid-July, launch end July.", "nextSteps": ["Push vendor for 25 June platform delivery", "If missed: target platform mid-July, launch to everyone end July", "Megan to flag immediately if further delays emerge"], "rag": "Delayed", "trend": "down", "statusHistory": [{"date": "26/05/2026", "status": "Delayed"}], "notes": [], "blockedBy": [], "blocks": []}, {"name": "PX Budget and Cost Base", "status": "On track", "owner": "Kelli McCosker", "due": "30/06/2026", "summary": "PX cost confirmed at 1.1% of revenue (FY26 and FY27). Power BI dashboard live. Natural attrition (~$300K savings) expected. Gartner licence plan replacing Deloitte.", "nextSteps": ["Kelli and Allisa to approach Owen (Gartner) on entry licence", "30 June: budget changes to reflect new PX Remit three-part model", "Deloitte engagement to end 30 June", "Identify remaining unidentified savings (~$300K)"], "rag": "On track", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "On track"}], "notes": [], "blockedBy": [], "blocks": []}, {"name": "PX Monthly Impact Reporting", "status": "Not started", "owner": "Kara Holdsworth", "due": "30/06/2026", "summary": "Template not yet designed. Metrics not agreed with Allisa. First report needed before the planning day has now passed — to be picked up post-27 May.", "nextSteps": ["Design reporting template and agree metrics with Allisa", "Agree frequency and distribution", "First report to be produced in June"], "rag": "Not started", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "Not started"}], "notes": [], "blockedBy": [], "blocks": []}, {"name": "HubSpot / PX Comms Governance", "status": "Not started", "owner": "Sam van Gool", "due": "30/06/2026", "summary": "Steven Elvin request for PX input on global consistency outstanding. Parked pending planning day. To be progressed in June.", "nextSteps": ["Sam van Gool to lead PX response to Steven Elvin", "People partners to share regional considerations before Sam responds"], "rag": "Not started", "trend": "neutral", "statusHistory": [{"date": "26/05/2026", "status": "Not started"}], "notes": [], "blockedBy": [], "blocks": []}];
+
+let OVR=JSON.parse(localStorage.getItem('pxOvr5')||'{}');
+let MAN=JSON.parse(localStorage.getItem('pxMan5')||'[]');
+const SEL={};const ICHIPS=[];
+
+function svO(){localStorage.setItem('pxOvr5',JSON.stringify(OVR));}
 function ap(item,id){return OVR[id]?{...item,...OVR[id]}:item;}
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function pD(s){if(!s)return null;const p=s.split('/');return p.length===3?new Date(+p[2],+p[1]-1,+p[0]):null;}
 function isOD(due,st){const d=pD(due);return d&&d<TODAY&&st!=='Complete'&&st!=='Resolved'&&st!=='Mitigated';}
 function isTW(due){const d=pD(due);return d&&d>=TODAY&&d<=WEEK_END;}
 function isNW(due){const d=pD(due);return d&&d>=NW_START&&d<=NW_END;}
-function age(ds){const d=pD(ds);return d?Math.floor((TODAY-d)/(864e5)):null;}
+function age(ds){const d=pD(ds);return d?Math.floor((TODAY-d)/864e5):null;}
 function agB(ds){const n=age(ds);if(n===null)return '';const c=n<14?'age-g':n<30?'age-a':'age-r';return`<span class="${c}">${n}d</span>`;}
 function stC(s){return s==='Not started'?'b-ns':s==='In progress'?'b-prog':(s==='Complete'||s==='Resolved')?'b-res':s==='Mitigated'?'b-mit':s==='Open'?'b-open':'b-ns';}
 function rC(r){return r==='Critical'?'b-crit':r==='High'?'b-high':r==='Medium'?'b-med':'b-low';}
 function chip(s){return`<span class="chip">${esc(s)}</span>`;}
 function bdg(t,c){return`<span class="badge ${c}">${esc(t)}</span>`;}
 function uniq(arr,k){return[...new Set(arr.map(x=>x[k]).filter(Boolean))].sort();}
+function trendIcon(t){return t==='up'?'<span class="tr-up" title="Improving">&#8679;</span>':t==='down'?'<span class="tr-dn" title="Deteriorating">&#8681;</span>':'<span class="tr-fl" title="Stable">&mdash;</span>';}
+function stCol2(s){const m={'On track':'#3B6D11','At risk':'#856404','Delayed':'#A32D2D','Blocked':'#721C24','Complete':'#185FA5','Not started':'#888','On hold':'#755470'};return m[s]||'#888';}
+function stCls2(s){return s==='On track'?'b-res':s==='At risk'?'b-prog':(s==='Delayed'||s==='Blocked')?'b-open':s==='Complete'?'b-mit':'b-ns';}
 
 function show(id,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');document.getElementById(id).classList.add('active');
+  if(id==='standup')rStandup();
+  if(id==='owners')rOwners();
+  if(id==='timeline')rTimeline();
 }
 function gTab(id,cb){const b=document.querySelector(`.tab[onclick*="'${id}'"]`);if(b)show(id,b);if(cb)setTimeout(cb,50);}
 
+/* ---- MULTI-FILTER ---- */
 function bldF(cid,pfx,groups){
   SEL[pfx]={};const el=document.getElementById(cid);el.innerHTML='';
   groups.forEach(({lbl,key,vals})=>{
     SEL[pfx][key]=new Set();
-    const row=document.createElement('div');row.className='filter-row';
-    row.innerHTML=`<label>${esc(lbl)}</label><div class="chip-wrap" id="${pfx}-c-${key}"></div>`;
+    const row=document.createElement('div');row.className='fr';
+    row.innerHTML=`<label>${esc(lbl)}</label><div class="cw" id="${pfx}-c-${key}"></div>`;
     el.appendChild(row);
     const cw=document.getElementById(`${pfx}-c-${key}`);
     vals.forEach(v=>{
-      const c=document.createElement('span');c.className='fchip';c.textContent=v;
-      c.onclick=()=>{
-        if(SEL[pfx][key].has(v)){SEL[pfx][key].delete(v);c.classList.remove('on');}
-        else{SEL[pfx][key].add(v);c.classList.add('on');}
-        if(pfx==='a')rA();else if(pfx==='r')rR();else if(pfx==='d')rD();
-      };cw.appendChild(c);
+      const c=document.createElement('span');c.className='fc';c.textContent=v;
+      c.onclick=()=>{if(SEL[pfx][key].has(v)){SEL[pfx][key].delete(v);c.classList.remove('on');}else{SEL[pfx][key].add(v);c.classList.add('on');}
+        if(pfx==='a')rA();else if(pfx==='r')rR();else if(pfx==='d')rD();};
+      cw.appendChild(c);
     });
   });
 }
-function mSel(pfx,item,map){
-  for(const[k,f]of Object.entries(map)){const s=SEL[pfx]?.[k];if(s&&s.size>0&&!s.has(item[f]))return false;}
-  return true;
-}
+function mSel(pfx,item,map){for(const[k,f]of Object.entries(map)){const s=SEL[pfx]?.[k];if(s&&s.size>0&&!s.has(item[f]))return false;}return true;}
 function clrF(pfx){
   if(SEL[pfx])Object.values(SEL[pfx]).forEach(s=>s.clear());
-  document.querySelectorAll(`[id^="${pfx}-c-"] .fchip,[id^="i-chips"] .fchip`).forEach(c=>c.classList.remove('on'));
+  document.querySelectorAll(`[id^="${pfx}-c-"] .fc,[id="i-chips"] .fc`).forEach(c=>c.classList.remove('on'));
   if(pfx==='a'){document.getElementById('aq').value='';rA();}
   else if(pfx==='r'){document.getElementById('rq').value='';rR();}
   else if(pfx==='d'){document.getElementById('dq').value='';rD();}
   else if(pfx==='i'){document.getElementById('iq').value='';rI();}
 }
 
+/* ---- INLINE EDIT ---- */
 function edRow(tp,id,flds){
-  const row=document.getElementById('row-'+id);if(!row)return;
-  row.classList.add('editing');
+  const row=document.getElementById('row-'+id);if(!row)return;row.classList.add('ed');
   const src=tp==='a'?ACTIONS:tp==='r'?RISKS:tp==='d'?DECISIONS:INITS;
-  const raw=tp==='a'?src.find((_,i)=>'a'+i===id):tp==='r'?src.find((_,i)=>'r'+i===id):tp==='d'?src.find((_,i)=>'d'+i===id):src.find((_,i)=>'i'+i===id);
-  const item=raw?ap(raw,id):{};
+  const raw=src.find((_,i)=>tp[0]+i===id)||{};
+  const item=ap(raw,id);
   const cells=row.querySelectorAll('td');
-  cells[cells.length-1].innerHTML=`<button class="svbtn" onclick="svEd('${tp}','${id}')">Save</button> <button class="cxbtn" onclick="${tp==='a'?'rA':tp==='r'?'rR':tp==='d'?'rD':'rI'}()">Cancel</button>`;
+  const lastCell=cells[cells.length-1];
+  lastCell.innerHTML=`<button class="svb" onclick="svEd('${tp}','${id}')">Save</button><button class="cxb" onclick="${tp==='a'?'rA':tp==='r'?'rR':tp==='d'?'rD':'rI'}()">Cancel</button>`;
   flds.forEach(({ci,f,tp:ft,opts})=>{
     const v=esc(item[f]||'');
     cells[ci].innerHTML=ft==='sel'
-      ?`<select class="eselect" id="ef-${id}-${f}">${opts.map(o=>`<option${o===(item[f]||'')?'selected':''}>${esc(o)}</option>`).join('')}</select>`
-      :`<input class="einput" id="ef-${id}-${f}" value="${v}">`;
+      ?`<select class="es" id="ef-${id}-${f}">${opts.map(o=>`<option${o===(item[f]||'')?'selected':''}>${esc(o)}</option>`).join('')}</select>`
+      :`<input class="ei" id="ef-${id}-${f}" value="${v}">`;
   });
 }
 function svEd(tp,id){
   if(!OVR[id])OVR[id]={};
-  document.querySelectorAll(`[id^="ef-${id}-"]`).forEach(el=>{
-    OVR[id][el.id.replace('ef-'+id+'-','')]=el.value;
-  });
+  document.querySelectorAll(`[id^="ef-${id}-"]`).forEach(el=>{OVR[id][el.id.replace('ef-'+id+'-','')]=el.value;});
   svO();
   if(tp==='a')rA();else if(tp==='r')rR();else if(tp==='d')rD();else rI();
   rSum();
 }
 
+/* ---- SUMMARY ---- */
 function rSum(){
   const acts=ACTIONS.map((a,i)=>ap(a,'a'+i));
   const rsks=RISKS.map((r,i)=>ap(r,'r'+i));
@@ -288,48 +374,157 @@ function rSum(){
     {n:pnd,l:'Pending decisions',col:'#854F0B',cb:`gTab('decisions',()=>{document.getElementById('d-dec').checked=false;rD();})`},
   ].map(({n,l,col,cb})=>`<div class="sc" onclick="${cb}"><div class="n" style="color:${col}">${n}</div><div class="l">${l}</div></div>`).join('');
 
-  function bars(el,data){
-    const mx=Math.max(...data.map(x=>x.n),1);
-    document.getElementById(el).innerHTML=data.map(({lbl,n,col,cb})=>`
-      <div class="bar-row" onclick="${cb}">
-        <div class="bar-label" title="${esc(lbl)}">${esc(lbl)}</div>
-        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/mx*100)}%;background:${col}"></div></div>
-        <div class="bar-count">${n}</div>
-      </div>`).join('');
-  }
-  bars('sb-act',[
-    {lbl:'Not started',n:acts.filter(a=>a.status==='Not started').length,col:'#888',cb:`gTab('actions',()=>{clrF('a');document.querySelectorAll('#a-c-status .fchip').forEach(c=>{if(c.textContent==='Not started')c.click();});rA();})`},
-    {lbl:'In progress',n:acts.filter(a=>a.status==='In progress').length,col:'#EF9F27',cb:`gTab('actions',()=>{clrF('a');document.querySelectorAll('#a-c-status .fchip').forEach(c=>{if(c.textContent==='In progress')c.click();});rA();})`},
-    {lbl:'Complete',n:acts.filter(a=>a.status==='Complete').length,col:'#3B6D11',cb:`gTab('actions',()=>{document.getElementById('a-done').checked=true;clrF('a');document.querySelectorAll('#a-c-status .fchip').forEach(c=>{if(c.textContent==='Complete')c.click();});rA();})`},
+  function bars(el,data){const mx=Math.max(...data.map(x=>x.n),1);document.getElementById(el).innerHTML=data.map(({lbl,n,col,cb})=>`<div class="br" onclick="${cb}"><div class="bl" title="${esc(lbl)}">${esc(lbl)}</div><div class="bt"><div class="bf" style="width:${Math.round(n/mx*100)}%;background:${col}"></div></div><div class="bn">${n}</div></div>`).join('');}
+  bars('sb-a',[
+    {lbl:'Not started',n:acts.filter(a=>a.status==='Not started').length,col:'#888',cb:`gTab('actions',()=>{clrF('a');document.querySelectorAll('#a-c-status .fc').forEach(c=>{if(c.textContent==='Not started')c.click();});})`},
+    {lbl:'In progress',n:acts.filter(a=>a.status==='In progress').length,col:'#EF9F27',cb:`gTab('actions',()=>{clrF('a');document.querySelectorAll('#a-c-status .fc').forEach(c=>{if(c.textContent==='In progress')c.click();});})`},
+    {lbl:'Complete',n:acts.filter(a=>a.status==='Complete').length,col:'#3B6D11',cb:`gTab('actions',()=>{document.getElementById('a-done').checked=true;clrF('a');document.querySelectorAll('#a-c-status .fc').forEach(c=>{if(c.textContent==='Complete')c.click();});})`},
   ]);
-  bars('sb-risk',['Critical','High','Medium','Low'].map(g=>({
-    lbl:g,col:{Critical:'#A32D2D',High:'#C94024',Medium:'#EF9F27',Low:'#3B6D11'}[g],
-    n:rsks.filter(r=>r.rag===g&&['Open','In progress'].includes(r.status)).length,
-    cb:`gTab('risks',()=>{clrF('r');document.querySelectorAll('#r-c-rag .fchip').forEach(c=>{if(c.textContent==='${g}')c.click();});rR();})`
-  })).filter(x=>x.n>0));
-  bars('sb-ainit',uniq(ACTIONS,'initiative').map(ini=>({
-    lbl:ini,n:acts.filter(a=>a.initiative===ini&&a.status!=='Complete').length,col:'#D67833',
-    cb:`gTab('actions',()=>{clrF('a');document.querySelectorAll('#a-c-initiative .fchip').forEach(c=>{if(c.textContent.trim()===decodeURIComponent('${encodeURIComponent(ini)}'))c.click();});rA();})`
-  })).filter(x=>x.n>0).sort((a,b)=>b.n-a.n).slice(0,8));
-  bars('sb-rinit',uniq(RISKS,'initiative').map(ini=>({
-    lbl:ini,n:rsks.filter(r=>r.initiative===ini&&['Open','In progress'].includes(r.status)).length,col:'#C94024',
-    cb:`gTab('risks',()=>{clrF('r');document.querySelectorAll('#r-c-initiative .fchip').forEach(c=>{if(c.textContent.trim()===decodeURIComponent('${encodeURIComponent(ini)}'))c.click();});rR();})`
-  })).filter(x=>x.n>0).sort((a,b)=>b.n-a.n).slice(0,8));
+  bars('sb-r',['Critical','High','Medium','Low'].map(g=>({lbl:g,col:{Critical:'#A32D2D',High:'#C94024',Medium:'#EF9F27',Low:'#3B6D11'}[g],n:rsks.filter(r=>r.rag===g&&['Open','In progress'].includes(r.status)).length,cb:`gTab('risks',()=>{clrF('r');document.querySelectorAll('#r-c-rag .fc').forEach(c=>{if(c.textContent==='${g}')c.click();});})`})).filter(x=>x.n>0));
+  bars('sb-ai',uniq(ACTIONS,'initiative').map(ini=>({lbl:ini,n:acts.filter(a=>a.initiative===ini&&a.status!=='Complete').length,col:'#D67833',cb:`gTab('actions',()=>{clrF('a');})`})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n).slice(0,8));
+  bars('sb-ri',uniq(RISKS,'initiative').map(ini=>({lbl:ini,n:rsks.filter(r=>r.initiative===ini&&['Open','In progress'].includes(r.status)).length,col:'#C94024',cb:`gTab('risks',()=>{clrF('r');})`})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n).slice(0,8));
 
-  const stCol={'On track':'#3B6D11','At risk':'#856404','Delayed':'#A32D2D','Blocked':'#721C24','Complete':'#185FA5','Not started':'#888','On hold':'#755470'};
   const richA=INITS.map((r,i)=>ap(r,'i'+i));
   document.getElementById('sb-inits').innerHTML=richA.map(i=>{
-    const col=stCol[i.status]||'#888';
-    return`<div class="init-card" style="border-left:4px solid ${col};border-color:${col}22;border-left-color:${col}" onclick="gTab('initiatives',null)">
+    const col=stCol2(i.status);
+    const trendH=trendIcon(i.trend||'neutral');
+    return`<div class="ic" style="border-left:4px solid ${col}" onclick="gTab('initiatives',null)">
       <div style="font-size:12px;font-weight:600;margin-bottom:5px">${esc(i.name.length>28?i.name.slice(0,27)+'…':i.name)}</div>
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <span class="badge" style="background:${col}22;color:${col};font-size:10px">${esc(i.status)}</span>
-        <span style="font-size:11px;color:var(--tx2)">${esc((i.owner||'').split('/')[0].trim())}</span>
+        <span class="badge ${stCls2(i.status)}" style="font-size:10px">${esc(i.status)}</span>
+        <span style="font-size:13px">${trendH}</span>
       </div>
     </div>`;
   }).join('');
 }
 
+/* ---- STANDUP PREP ---- */
+function rStandup(){
+  const acts=ACTIONS.map((a,i)=>ap(a,'a'+i));
+  const rsks=RISKS.map((r,i)=>ap(r,'r'+i));
+  const richA=INITS.map((r,i)=>ap(r,'i'+i));
+  const od=acts.filter(a=>isOD(a.due,a.status));
+  const tw=acts.filter(a=>isTW(a.due)&&a.status!=='Complete');
+  const pnd=DECISIONS.filter(d=>d.t==='PENDING');
+  const crh=rsks.filter(r=>['Critical','High'].includes(r.rag)&&['Open','In progress'].includes(r.status));
+  const atRisk=richA.filter(i=>['At risk','Delayed','Blocked'].includes(i.status));
+  const trending=richA.filter(i=>i.trend==='down');
+  const oldPend=DECISIONS.filter(d=>{const n=age(d.dateAdded);return d.t==='PENDING'&&n!==null&&n>14;});
+
+  function sec(icon,title,items,emptyMsg){
+    if(!items.length)return`<div class="sp-section"><h3>${icon} ${title}</h3><p style="font-size:12px;color:var(--tx3)">${emptyMsg}</p></div>`;
+    return`<div class="sp-section"><h3>${icon} ${title} <span style="font-size:11px;font-weight:400;color:var(--tx3)">(${items.length})</span></h3>${items.map(({label,sub,badge:b})=>`<div class="sp-row"><span class="sp-label">&#8226;</span><div><div style="font-size:12px;font-weight:500">${esc(label)}${b?` &nbsp;${b}`:''}</div>${sub?`<div style="font-size:11px;color:var(--tx2);margin-top:2px">${esc(sub)}</div>`:''}</div></div>`).join('')}</div>`;
+  }
+
+  document.getElementById('sp-content').innerHTML=
+    sec('🚨','Overdue actions requiring attention',od.map(a=>({label:a.action,sub:`${a.initiative} · ${a.owner} · Due ${a.due}`,badge:agB(a.dateAdded)})),'No overdue actions.')+
+    sec('⚠️','Critical and high risks open',crh.map(r=>({label:r.risk,sub:`${r.initiative} · ${r.owner}`,badge:bdg(r.rag,rC(r.rag))})),'No critical or high risks open.')+
+    sec('📋','Actions due this week',tw.map(a=>({label:a.action,sub:`${a.initiative} · ${a.owner} · Due ${a.due}`})),'No actions due this week.')+
+    sec('🔴','Initiatives at risk or deteriorating',[...atRisk,...trending.filter(i=>!atRisk.includes(i))].map(i=>({label:i.name,sub:i.summary,badge:bdg(i.status,stCls2(i.status))+' '+trendIcon(i.trend||'neutral')})),'No initiatives currently at risk.')+
+    sec('🕐','Pending decisions over 14 days old',oldPend.map(d=>({label:d.d,sub:`${d.i} · ${d.o} · ${age(d.dateAdded)}d old`})),'No long-standing pending decisions.')+
+    sec('📅','Milestones this week',MTW.map(m=>({label:m.desc,sub:`${m.owner}${m.initiative?' · '+m.initiative:''}`})),'No milestones this week.')+
+    `<div style="font-size:11px;color:var(--tx3);margin-top:8px;font-style:italic">Auto-generated from live dashboard data · ${DD}</div>`;
+}
+
+/* ---- ALERTS ---- */
+function rAlerts(){
+  const acts=ACTIONS.map((a,i)=>ap(a,'a'+i));const rsks=RISKS.map((r,i)=>ap(r,'r'+i));
+  const od=acts.filter(a=>isOD(a.due,a.status));
+  const cr=rsks.filter(r=>['Critical','High'].includes(r.rag)&&['Open','In progress'].includes(r.status));
+  const oldPend=DECISIONS.filter(d=>{const n=age(d.dateAdded);return d.t==='PENDING'&&n!==null&&n>14;});
+  document.getElementById('al-mc').innerHTML=`
+    <div class="mc"><div class="n" style="color:#A32D2D">${od.length}</div><div class="l">Overdue actions</div></div>
+    <div class="mc"><div class="n" style="color:#491217">${cr.filter(r=>r.rag==='Critical').length}</div><div class="l">Critical risks</div></div>
+    <div class="mc"><div class="n" style="color:#721C24">${cr.filter(r=>r.rag==='High').length}</div><div class="l">High risks open</div></div>
+    <div class="mc"><div class="n" style="color:#854F0B">${DECISIONS.filter(d=>d.t==='PENDING').length}</div><div class="l">Pending decisions</div></div>`;
+  document.getElementById('al-acts').innerHTML=od.length?od.map(a=>`<div class="wc ac"><div class="wh">${esc(a.action)}</div><div class="wm">${esc(a.update)}</div><div class="wt">${chip(a.initiative)} ${chip(a.owner)} <span>Due: ${a.due}</span> ${agB(a.dateAdded)}</div></div>`).join(''):`<div class="empty">No overdue actions.</div>`;
+  document.getElementById('al-risks').innerHTML=cr.map(r=>`<div class="wc ac"><div class="wh">${bdg(r.rag,rC(r.rag))} &nbsp;${esc(r.risk)}</div><div class="wm">${esc(r.impact)}</div><div class="wt">${chip(r.initiative)} ${chip(r.owner)} ${agB(r.dateRaised)}</div></div>`).join('');
+  document.getElementById('al-decs').innerHTML=oldPend.length?oldPend.map(d=>`<div class="wc" style="border-left:3px solid var(--go)"><div class="wh">${esc(d.d)}</div><div class="wt">${chip(d.i)} ${chip(d.o)} ${agB(d.dateAdded)}</div></div>`).join(''):`<div class="empty">No pending decisions over 14 days old.</div>`;
+}
+
+/* ---- WEEK PANELS ---- */
+function rWeek(aEl,dEl,mEl,af,acc,miles){
+  const acts=ACTIONS.map((a,i)=>ap(a,'a'+i));const wa=acts.filter(af);const wd=DECISIONS.filter(d=>d.t==='PENDING');
+  document.getElementById(aEl).innerHTML=wa.length?wa.map(a=>`<div class="wc"><div class="wh">${esc(a.action)}</div><div class="wm">${esc(a.update)}</div><div class="wt">${chip(a.initiative)} ${chip(a.owner)} <span style="color:${acc};font-weight:500">Due: ${a.due}</span> ${agB(a.dateAdded)}</div></div>`).join(''):`<div class="empty" style="padding:.4rem 0">No actions due.</div>`;
+  document.getElementById(dEl).innerHTML=wd.length?wd.map(d=>`<div class="wc"><div class="wh">${bdg('Pending','b-pend')} &nbsp;${esc(d.d)}</div><div class="wt">${chip(d.i)} ${chip(d.o)} ${agB(d.dateAdded)}</div></div>`).join(''):`<div class="empty" style="padding:.4rem 0">No pending decisions.</div>`;
+  document.getElementById(mEl).innerHTML=miles.map(m=>`<div class="wc"><div class="wh" style="color:${acc}">${esc(m.date||m.desc)}</div><div class="wm">${esc(m.desc||m.date)}</div><div class="wt">${chip(m.owner)}${m.initiative?` ${chip(m.initiative)}`:''}</div></div>`).join('');
+}
+
+/* ---- TIMELINE ---- */
+function rTimeline(){
+  const sorted=[...MALL].sort((a,b)=>{const da=pD(a.date),db=pD(b.date);return (da||new Date(9999))-(db||new Date(9999));});
+  const groups={};
+  sorted.forEach(m=>{
+    const d=pD(m.date);
+    let wk='Future';
+    if(d){
+      const diff=Math.floor((d-TODAY)/864e5);
+      if(diff<0)wk='Past';
+      else if(diff<=6)wk='This week';
+      else if(diff<=13)wk='Next week';
+      else if(diff<=27)wk='In 2\u20133 weeks';
+      else if(diff<=55)wk='In 4\u20138 weeks';
+      else wk='Later';
+    }
+    if(!groups[wk])groups[wk]=[];
+    groups[wk].push(m);
+  });
+  const order=['This week','Next week','In 2\u20133 weeks','In 4\u20138 weeks','Later','Past'];
+  const initColors={'Workday Group 2':'#3B6D11','Annual REM Review':'#A32D2D','KPI Framework':'#D67833','Leadership Capability Framework':'#856404','AI Enablement':'#755470','Corporate PX Remit Review':'#87AD99','Wink / Global Benefits':'#C94024','Global Induction':'#185FA5'};
+  document.getElementById('tl-content').innerHTML=order.filter(k=>groups[k]).map(wk=>`
+    <div class="tl-group">
+      <h4>${wk}</h4>
+      ${groups[wk].map(m=>{
+        const col=initColors[m.initiative]||'#888';
+        return`<div class="tl-item">
+          <div class="tl-date">${m.date||''}</div>
+          <div class="tl-dot" style="background:${col}"></div>
+          <div class="tl-body">
+            <div class="tl-desc">${esc(m.desc)}</div>
+            <div class="tl-meta">${m.initiative?chip(m.initiative):''}  ${chip(m.owner)}</div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+/* ---- OWNERS ---- */
+let ownerFilter='';
+function rOwners(){
+  ownerFilter=document.getElementById('owq').value.toLowerCase();
+  const acts=ACTIONS.map((a,i)=>ap(a,'a'+i));
+  const open=acts.filter(a=>a.status!=='Complete');
+  const ownerMap={};
+  open.forEach(a=>{
+    const o=a.owner||'Unassigned';
+    if(!ownerMap[o])ownerMap[o]={ns:0,ip:0,total:0,items:[]};
+    ownerMap[o].total++;
+    if(a.status==='Not started')ownerMap[o].ns++;
+    else ownerMap[o].ip++;
+    ownerMap[o].items.push(a);
+  });
+  const sorted=Object.entries(ownerMap).sort((a,b)=>b[1].total-a[1].total);
+  document.getElementById('ow-grid').innerHTML=sorted.map(([owner,data])=>`
+    <div class="ow-card" onclick="document.getElementById('owq').value='${owner.replace(/'/g,"\\'")}';rOwners()">
+      <div style="font-size:12px;font-weight:600;margin-bottom:6px">${esc(owner.length>22?owner.slice(0,21)+'…':owner)}</div>
+      <div style="font-size:11px;color:var(--tx2);margin-bottom:6px">${data.total} open action${data.total===1?'':'s'}</div>
+      <div class="ow-bar-wrap">
+        ${data.ns?`<span class="ow-seg" style="width:${Math.round(data.ns/data.total*100)}%;background:#888;display:inline-block" title="${data.ns} not started"></span>`:''}
+        ${data.ip?`<span class="ow-seg" style="width:${Math.round(data.ip/data.total*100)}%;background:#EF9F27;display:inline-block" title="${data.ip} in progress"></span>`:''}
+      </div>
+      <div style="font-size:10px;color:var(--tx3);margin-top:3px">${data.ns} not started · ${data.ip} in progress</div>
+    </div>`).join('');
+  const f=ownerFilter?open.filter(a=>(a.owner||'').toLowerCase().includes(ownerFilter)):open;
+  document.getElementById('ow-body').innerHTML=f.length?f.map(a=>{
+    const od=isOD(a.due,a.status);
+    return`<tr><td><div>${esc(a.action)}</div><div class="det">${esc(a.update)}</div></td>
+      <td>${esc(a.initiative)}</td><td>${chip(a.owner)}</td>
+      <td style="${od?'color:#A32D2D;font-weight:600':''};white-space:nowrap">${a.due||'—'}${od?' ⚠':''}</td>
+      <td>${agB(a.dateAdded)}</td><td>${bdg(a.status,stC(a.status))}</td></tr>`;
+  }).join(''):`<tr><td colspan="6"><div class="empty">No actions match.</div></td></tr>`;
+}
+
+/* ---- ACTIONS ---- */
 function rA(){
   const q=document.getElementById('aq').value.toLowerCase();
   const sd=document.getElementById('a-done').checked;
@@ -342,15 +537,18 @@ function rA(){
     <div class="mc"><div class="n" style="color:#155724">${f.filter(a=>a.status==='Complete').length}</div><div class="l">Complete</div></div>`;
   document.getElementById('a-body').innerHTML=f.length?f.map(a=>{
     const od=isOD(a.due,a.status);const id=a._id;
+    const linkedRisk=a.mitigatesRisk?a.mitigatesRisk.map(rid=>{const ri=+rid.replace('r','');const r=RISKS[ri];return r?`<span class="ra-link" onclick="gTab('risks',()=>{document.getElementById('rq').value='${(r.risk||'').slice(0,20).replace(/'/g,"\\'")}';rR();})">${esc((r.risk||'').slice(0,18)+'…')}</span>`:''}).join(' '):'';
     return`<tr id="row-${id}"><td><div>${esc(a.action)}</div><div class="det">${esc(a.update)}</div></td>
       <td>${esc(a.initiative)}</td><td>${chip(a.owner)}</td>
       <td style="white-space:nowrap;${od?'color:#A32D2D;font-weight:600':''}">${a.due||'—'}${od?' ⚠':''}</td>
       <td>${agB(a.dateAdded)}</td><td>${bdg(a.status,stC(a.status))}</td>
-      <td><button class="edbtn" onclick="edRow('a','${id}',[{ci:1,f:'initiative',tp:'text'},{ci:2,f:'owner',tp:'text'},{ci:3,f:'due',tp:'text'},{ci:5,f:'status',tp:'sel',opts:['Not started','In progress','Complete']}])">Edit</button></td>
+      <td style="font-size:11px">${linkedRisk||'—'}</td>
+      <td><button class="edb" onclick="edRow('a','${id}',[{ci:1,f:'initiative',tp:'text'},{ci:2,f:'owner',tp:'text'},{ci:3,f:'due',tp:'text'},{ci:5,f:'status',tp:'sel',opts:['Not started','In progress','Complete']}])">Edit</button></td>
     </tr>`;
-  }).join(''):`<tr><td colspan="7"><div class="empty">No actions match.</div></td></tr>`;
+  }).join(''):`<tr><td colspan="8"><div class="empty">No actions match.</div></td></tr>`;
 }
 
+/* ---- RISKS ---- */
 function rR(){
   const q=document.getElementById('rq').value.toLowerCase();
   const sr=document.getElementById('r-res').checked;
@@ -363,39 +561,43 @@ function rR(){
     <div class="mc"><div class="n" style="color:#155724">${f.filter(r=>r.rag==='Low').length}</div><div class="l">Low</div></div>`;
   document.getElementById('r-body').innerHTML=f.length?f.map(r=>{
     const id=r._id;
+    const linkedActs=r.mitigatedBy?r.mitigatedBy.map(aid=>{const ai=+aid.replace('a','');const a=ACTIONS[ai];return a?`<span class="ra-link" onclick="gTab('actions',()=>{document.getElementById('aq').value='${(a.action||'').slice(0,20).replace(/'/g,"\\'")}';rA();})">${esc((a.action||'').slice(0,16)+'…')}</span>`:''}).join(' '):'';
     return`<tr id="row-${id}"><td><div>${esc(r.risk)}</div><div class="det">${esc(r.impact)}</div></td>
       <td>${esc(r.initiative)}</td><td>${chip(r.owner)}</td>
       <td>${bdg(r.rag,rC(r.rag))}</td><td>${agB(r.dateRaised)}</td><td>${bdg(r.status,stC(r.status))}</td>
       <td style="font-size:11px;color:var(--tx2)">${esc(r.mitigation)}</td>
-      <td><button class="edbtn" onclick="edRow('r','${id}',[{ci:2,f:'owner',tp:'text'},{ci:3,f:'rag',tp:'sel',opts:['Critical','High','Medium','Low']},{ci:5,f:'status',tp:'sel',opts:['Open','In progress','Mitigated','Resolved']},{ci:6,f:'mitigation',tp:'text'}])">Edit</button></td>
+      <td style="font-size:11px">${linkedActs||'—'}</td>
+      <td><button class="edb" onclick="edRow('r','${id}',[{ci:2,f:'owner',tp:'text'},{ci:3,f:'rag',tp:'sel',opts:['Critical','High','Medium','Low']},{ci:5,f:'status',tp:'sel',opts:['Open','In progress','Mitigated','Resolved']},{ci:6,f:'mitigation',tp:'text'}])">Edit</button></td>
     </tr>`;
-  }).join(''):`<tr><td colspan="8"><div class="empty">No risks match.</div></td></tr>`;
+  }).join(''):`<tr><td colspan="9"><div class="empty">No risks match.</div></td></tr>`;
 }
 
+/* ---- DECISIONS ---- */
 function rD(){
   const q=document.getElementById('dq').value.toLowerCase();
   const sd=document.getElementById('d-dec').checked;
   const decs=DECISIONS.map((x,i)=>({...ap(x,'d'+i),_id:'d'+i}));
   const f=decs.filter(x=>(!q||(x.d+x.i+x.o).toLowerCase().includes(q))&&(sd||x.t==='PENDING')&&mSel('d',x,{initiative:'i'}));
   document.getElementById('d-body').innerHTML=f.length?f.map(x=>{
-    const id=x._id;
-    return`<tr id="row-${id}"><td>${esc(x.d)}</td><td>${esc(x.i)}</td><td>${chip(x.o)}</td>
-      <td>${agB(x.dateAdded)}</td><td>${bdg(x.t==='DECIDED'?'Decided':'Pending',x.t==='DECIDED'?'b-dec':'b-pend')}</td>
-      <td><button class="edbtn" onclick="edRow('d','${id}',[{ci:2,f:'o',tp:'text'},{ci:4,f:'t',tp:'sel',opts:['PENDING','DECIDED']}])">Edit</button></td>
+    const id=x._id;const oldFlag=age(x.dateAdded)>14&&x.t==='PENDING';
+    return`<tr id="row-${id}"><td>${esc(x.d)}${oldFlag?` &nbsp;<span class="age-r">${age(x.dateAdded)}d</span>`:''}}</td>
+      <td>${esc(x.i)}</td><td>${chip(x.o)}</td>
+      <td>${agB(x.dateAdded)}</td>
+      <td>${bdg(x.t==='DECIDED'?'Decided':'Pending',x.t==='DECIDED'?'b-dec':'b-pend')}</td>
+      <td><button class="edb" onclick="edRow('d','${id}',[{ci:2,f:'o',tp:'text'},{ci:4,f:'t',tp:'sel',opts:['PENDING','DECIDED']}])">Edit</button></td>
     </tr>`;
   }).join(''):`<tr><td colspan="6"><div class="empty">No decisions match.</div></td></tr>`;
 }
 
-const ICHIPS=[];
+/* ---- INITIATIVES ---- */
 function bldIChips(){
   const w=document.getElementById('i-chips');w.innerHTML='';ICHIPS.length=0;
-  ['On track','At risk','Delayed','Complete','Not started'].forEach(s=>{
-    const c=document.createElement('span');c.className='fchip';c.textContent=s;
+  ['On track','At risk','Delayed','Complete','Not started','On hold'].forEach(s=>{
+    const c=document.createElement('span');c.className='fc';c.textContent=s;
     c.onclick=()=>{c.classList.toggle('on');rI();};
     w.appendChild(c);ICHIPS.push(c);
   });
 }
-
 function rI(){
   const q=document.getElementById('iq').value.toLowerCase();
   const active=new Set(ICHIPS.filter(c=>c.classList.contains('on')).map(c=>c.textContent));
@@ -408,41 +610,27 @@ function rI(){
     <div class="mc"><div class="n" style="color:#155724">${cn['On track']||0}</div><div class="l">On track</div></div>
     <div class="mc"><div class="n" style="color:#856404">${cn['At risk']||0}</div><div class="l">At risk</div></div>
     <div class="mc"><div class="n" style="color:#A32D2D">${cn['Delayed']||0}</div><div class="l">Delayed</div></div>`;
-  const stC2=s=>s==='On track'?'b-res':s==='At risk'?'b-prog':(s==='Delayed'||s==='Blocked')?'b-open':s==='Complete'?'b-mit':'b-ns';
   document.getElementById('i-body').innerHTML=f.length?f.map(i=>{
     const id=i._id;
-    const steps=Array.isArray(i.nextSteps)?i.nextSteps.map(s=>`<li style="margin-bottom:3px">${esc(s)}</li>`).join(''):'';
-    return`<tr id="row-${id}"><td style="font-weight:500">${esc(i.name)}</td>
-      <td>${bdg(i.status,stC2(i.status))}</td><td>${esc(i.owner)}</td>
+    const steps=Array.isArray(i.nextSteps)?i.nextSteps.slice(0,3).map(s=>`<li style="margin-bottom:2px">${esc(s)}</li>`).join(''):'';
+    const blockedBy=(i.blockedBy||[]).map(b=>`<span style="font-size:10px;color:var(--rfg)">&#8592; ${esc(b.slice(0,18))}</span>`).join(' ');
+    const blocks=(i.blocks||[]).map(b=>`<span style="font-size:10px;color:var(--bfg)">&#8594; ${esc(b.slice(0,18))}</span>`).join(' ');
+    const notesHtml=(i.notes||[]).slice(0,2).map(n=>`<div class="note-item"><div class="note-date">${esc(n.date)}</div>${esc(n.text)}</div>`).join('');
+    return`<tr id="row-${id}">
+      <td><div style="font-weight:500">${esc(i.name)}</div>${notesHtml?`<div style="margin-top:4px">${notesHtml}</div>`:''}</td>
+      <td>${bdg(i.status,stCls2(i.status))}</td>
+      <td>${trendIcon(i.trend||'neutral')}</td>
+      <td>${esc(i.owner)}</td>
       <td style="font-size:11px;color:var(--tx2);white-space:nowrap">${esc(i.due)}</td>
       <td style="font-size:12px;color:var(--tx2)">${esc(i.summary)}</td>
-      <td><ul style="padding-left:13px;font-size:12px">${steps}</ul></td>
-      <td><button class="edbtn" onclick="edRow('i','${id}',[{ci:1,f:'status',tp:'sel',opts:['On track','At risk','Delayed','Blocked','Complete','On hold','Not started']},{ci:2,f:'owner',tp:'text'},{ci:3,f:'due',tp:'text'},{ci:4,f:'summary',tp:'text'}])">Edit</button></td>
+      <td><ul style="padding-left:13px;font-size:11px">${steps}</ul></td>
+      <td style="font-size:11px">${blockedBy}${blocks}</td>
+      <td><button class="edb" onclick="edRow('i','${id}',[{ci:1,f:'status',tp:'sel',opts:['On track','At risk','Delayed','Blocked','Complete','On hold','Not started']},{ci:2,f:'trend',tp:'sel',opts:['up','neutral','down']},{ci:3,f:'owner',tp:'text'},{ci:4,f:'due',tp:'text'},{ci:5,f:'summary',tp:'text'}])">Edit</button></td>
     </tr>`;
-  }).join(''):`<tr><td colspan="7"><div class="empty">No initiatives match.</div></td></tr>`;
+  }).join(''):`<tr><td colspan="9"><div class="empty">No initiatives match.</div></td></tr>`;
 }
 
-function rAlerts(){
-  const acts=ACTIONS.map((a,i)=>ap(a,'a'+i));const rsks=RISKS.map((r,i)=>ap(r,'r'+i));
-  const od=acts.filter(a=>isOD(a.due,a.status));
-  const cr=rsks.filter(r=>['Critical','High'].includes(r.rag)&&['Open','In progress'].includes(r.status));
-  document.getElementById('al-mc').innerHTML=`
-    <div class="mc"><div class="n" style="color:#A32D2D">${od.length}</div><div class="l">Overdue actions</div></div>
-    <div class="mc"><div class="n" style="color:#491217">${cr.filter(r=>r.rag==='Critical').length}</div><div class="l">Critical risks</div></div>
-    <div class="mc"><div class="n" style="color:#721C24">${cr.filter(r=>r.rag==='High').length}</div><div class="l">High risks open</div></div>
-    <div class="mc"><div class="n" style="color:#854F0B">${DECISIONS.filter(d=>d.t==='PENDING').length}</div><div class="l">Pending decisions</div></div>`;
-  document.getElementById('al-acts').innerHTML=od.length?od.map(a=>`<div class="wcard alert-card"><div class="wh">${esc(a.action)}</div><div class="wm">${esc(a.update)}</div><div class="wt">${chip(a.initiative)} ${chip(a.owner)} <span>Due: ${a.due}</span> ${agB(a.dateAdded)}</div></div>`).join(''):`<div class="empty">No overdue actions.</div>`;
-  document.getElementById('al-risks').innerHTML=cr.map(r=>`<div class="wcard alert-card"><div class="wh">${bdg(r.rag,rC(r.rag))} &nbsp;${esc(r.risk)}</div><div class="wm">${esc(r.impact)}</div><div class="wt">${chip(r.initiative)} ${chip(r.owner)} ${agB(r.dateRaised)}</div></div>`).join('');
-}
-
-function rWeek(aEl,dEl,mEl,af,acc,miles){
-  const acts=ACTIONS.map((a,i)=>ap(a,'a'+i));
-  const wa=acts.filter(af);const wd=DECISIONS.filter(d=>d.t==='PENDING');
-  document.getElementById(aEl).innerHTML=wa.length?wa.map(a=>`<div class="wcard"><div class="wh">${esc(a.action)}</div><div class="wm">${esc(a.update)}</div><div class="wt">${chip(a.initiative)} ${chip(a.owner)} <span style="color:${acc};font-weight:500">Due: ${a.due}</span> ${agB(a.dateAdded)}</div></div>`).join(''):`<div class="empty" style="padding:.4rem 0">No actions due.</div>`;
-  document.getElementById(dEl).innerHTML=wd.length?wd.map(d=>`<div class="wcard"><div class="wh">${bdg('Pending','b-pend')} &nbsp;${esc(d.d)}</div><div class="wt">${chip(d.i)} ${chip(d.o)}</div></div>`).join(''):`<div class="empty" style="padding:.4rem 0">No pending decisions.</div>`;
-  document.getElementById(mEl).innerHTML=miles.map(m=>`<div class="wcard"><div class="wh" style="color:${acc}">${esc(m.date)}</div><div class="wm">${esc(m.desc)}</div><div class="wt">${chip(m.owner)}</div></div>`).join('');
-}
-
+/* ---- GANTT ---- */
 function rGantt(){
   const sO={Delayed:0,'At risk':1,'Blocked':2,'Not started':3,'On track':4,Complete:5,'On hold':6};
   const sorted=[...INITIATIVES].sort((a,b)=>(sO[a.status]??9)-(sO[b.status]??9));
@@ -462,16 +650,17 @@ function rGantt(){
   document.getElementById('g-wrap').innerHTML=h;
 }
 
+/* ---- MANUAL ---- */
 function svM(){
   const desc=document.getElementById('md').value.trim();if(!desc){alert('Enter a description.');return;}
   MAN.push({type:document.getElementById('mt2').value,init:document.getElementById('mi').value.trim(),desc,owner:document.getElementById('mo').value.trim(),due:document.getElementById('mdue').value.trim(),status:document.getElementById('ms').value,update:document.getElementById('mu').value.trim(),added:new Date().toLocaleDateString('en-AU')});
-  localStorage.setItem('pxMan',JSON.stringify(MAN));rML();
+  localStorage.setItem('pxMan5',JSON.stringify(MAN));rML();
   ['md','mo','mdue','mu','mi'].forEach(id=>document.getElementById(id).value='');
 }
-function delM(i){MAN.splice(i,1);localStorage.setItem('pxMan',JSON.stringify(MAN));rML();}
+function delM(i){MAN.splice(i,1);localStorage.setItem('pxMan5',JSON.stringify(MAN));rML();}
 function rML(){
   const el=document.getElementById('ml');
-  if(!MAN.length){el.innerHTML='<div style="font-size:12px;color:var(--tx2);padding:.4rem 0">No updates yet. Saved updates persist between visits.</div>';return;}
+  if(!MAN.length){el.innerHTML='<div style="font-size:12px;color:var(--tx2);padding:.4rem 0">No updates saved yet. Updates persist between visits.</div>';return;}
   el.innerHTML=MAN.map((m,i)=>`<div class="mitem"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span>${bdg(m.type,'b-ip')} &nbsp;<strong>${esc(m.desc)}</strong></span><button style="font-size:11px;color:var(--ru);background:none;border:none;cursor:pointer" onclick="delM(${i})">Remove</button></div><div style="font-size:12px;color:var(--tx2);display:flex;flex-wrap:wrap;gap:4px">${m.init?chip(m.init):''}${m.owner?chip(m.owner):''}${m.due?`<span>Due: ${m.due}</span>`:''}${bdg(m.status,stC(m.status))}</div>${m.update?`<div style="margin-top:4px;font-size:11px;color:var(--tx2)">${esc(m.update)}</div>`:''}</div>`).join('');
 }
 function expM(){
@@ -479,6 +668,7 @@ function expM(){
   navigator.clipboard.writeText(MAN.map(m=>`[${m.type.toUpperCase()}] ${m.desc}\n  Initiative: ${m.init||'—'} | Owner: ${m.owner||'—'} | Due: ${m.due||'—'} | Status: ${m.status}\n  ${m.update||''}`).join('\n\n')).then(()=>alert('Copied. Paste into Claude for next standup.'));
 }
 
+/* ---- BOOT ---- */
 bldF('a-fa','a',[{lbl:'Initiative',key:'initiative',vals:uniq(ACTIONS,'initiative')},{lbl:'Owner',key:'owner',vals:uniq(ACTIONS,'owner')},{lbl:'Status',key:'status',vals:['Not started','In progress','Complete']}]);
 bldF('r-fa','r',[{lbl:'Initiative',key:'initiative',vals:uniq(RISKS,'initiative')},{lbl:'RAG',key:'rag',vals:['Critical','High','Medium','Low']},{lbl:'Status',key:'status',vals:['Open','In progress','Mitigated','Resolved']}]);
 bldF('d-fa','d',[{lbl:'Initiative',key:'initiative',vals:[...new Set(DECISIONS.map(d=>d.i))].sort()}]);
